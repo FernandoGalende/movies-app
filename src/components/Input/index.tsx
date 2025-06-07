@@ -1,33 +1,42 @@
+import { type FC, type ChangeEvent } from "react";
 import { styles } from "./styles";
 
-interface InputProps {
+/**
+ * @description Input type
+ * @example "search" | "text"
+ */
+type InputType = "search" | "text";
+
+export interface InputProps {
   query: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   label: string;
   id: string;
+  type?: InputType;
   placeholder: string;
   ariaLabel: string;
   ariaDescribedby: string;
   autoComplete: string;
 }
 
-export function Input({
+export const Input: FC<InputProps> = ({
   query,
   label,
   id,
+  type = "text",
   placeholder,
   ariaLabel,
   ariaDescribedby,
   autoComplete,
   onChange,
   ...props
-}: InputProps) {
+}) => {
   return (
     <label htmlFor={id} className={styles.label}>
       {label}
       <input
         id={id}
-        type="search"
+        type={type}
         value={query}
         onChange={onChange}
         placeholder={placeholder}
@@ -39,4 +48,4 @@ export function Input({
       />
     </label>
   );
-}
+};

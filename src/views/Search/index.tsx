@@ -10,10 +10,10 @@ import { SearchHeader, SearchForm, SearchResults } from "./components";
 const MIN_SEARCH_LENGTH = 3;
 
 export function Search() {
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState(false);
-  const isEmptySearch =
+  const [loading, setLoading] = useState<boolean>(false);
+  const isEmptySearch: boolean =
     query.length > MIN_SEARCH_LENGTH && !loading && movies.length === 0;
 
   useDebounce(
@@ -21,7 +21,7 @@ export function Search() {
       if (query.length < MIN_SEARCH_LENGTH) return;
 
       setLoading(true);
-      getMovies({ query: query, page: "1" })
+      getMovies({ query, page: "1" })
         .then((data) => {
           setMovies(data.results);
         })
@@ -33,7 +33,7 @@ export function Search() {
     [query]
   );
 
-  const handleClear = () => {
+  const handleClear = (): void => {
     setQuery("");
     setMovies([]);
   };
