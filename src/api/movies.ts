@@ -6,11 +6,11 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 
 export interface GetMoviesParams {
   query: string;
-  page: string;
+  page: number;
 }
 
 interface GetMoviesResponse {
-  page: number;
+  page: string;
   results: Movie[];
   total_pages: number;
   total_results: number;
@@ -23,7 +23,7 @@ export const getMovies = async ({
   const queryParams = new URLSearchParams({
     api_key: API_KEY,
     query,
-    page,
+    page: page.toString(),
     include_adult: "false",
   });
   const url = `${BASE_URL}/search/movie?${queryParams.toString()}`;
