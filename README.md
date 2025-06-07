@@ -1,102 +1,125 @@
-# React + TypeScript + Vite
+# 🎬 Movie Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern movie search application built with React that lets you explore movies using [The Movie Database (TMDB)](https://www.themoviedb.org/) API.
 
-Currently, two official plugins are available:
+![Movie Search Demo](demo.gif)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Quick Start
 
-## Expanding the ESLint configuration
+```bash
+# Install dependencies
+pnpm install
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+# Start development server
+pnpm dev
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+# Build for production
+pnpm build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🔑 Environment Setup
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+Create a `.env` file in the root directory:
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+```env
+VITE_TMDB_API_KEY=your_tmdb_api_key
+VITE_TMDB_API_URL=https://api.themoviedb.org/3
 ```
 
-## Project Structure
+Get your API key by [creating an account on TMDB](https://www.themoviedb.org/signup).
+
+## 🎯 Features
+
+- **Real-time Search**: Results update as you type (with debouncing)
+- **Movie Details**: View comprehensive information about each movie
+- **Responsive Design**: Works seamlessly on mobile and desktop
+- **Accessibility**: Full keyboard navigation and screen reader support
+- **Error Handling**: Clear feedback for API errors and empty states
+
+## 🏗️ Project Overview
 
 ```
 src/
-├── api/
-│   └── movies.ts          # API calls and services
-├── components/
-│   └── Input/            # Shared components
-│       ├── index.tsx
-│       └── styles.ts
-├── types/
-│   └── index.ts          # TypeScript interfaces and types
-└── views/
-    ├── Search/           # Search view
-    │   ├── components/
-    │   │   └── SearchForm/
-    │   │       ├── index.tsx
-    │   │       └── styles.ts
-    │   ├── index.tsx
-    │   └── styles.ts
-    └── Detail/           # Movie detail view
-        ├── components/
-        │   ├── BackButton/
-        │   │   ├── index.tsx
-        │   │   └── styles.ts
-        │   ├── MovieContent/
-        │   │   ├── index.tsx
-        │   │   └── styles.ts
-        │   ├── LoadingState/
-        │   │   ├── index.tsx
-        │   │   └── styles.ts
-        │   ├── ErrorState/
-        │   │   ├── index.tsx
-        │   │   └── styles.ts
-        │   └── index.ts
-        └── index.tsx
+├── views/               # Main features
+│   ├── Search/         # Movie search & results
+│   └── Detail/         # Movie information
+├── components/         # Shared UI components
+├── api/               # TMDB API integration
+└── types/            # TypeScript definitions
 ```
 
-The project follows a feature-based structure where:
+### Key Features Implementation
 
-- `api/`: Contains all API-related code and services
-- `components/`: Shared/reusable components used across the application
-- `types/`: TypeScript type definitions and interfaces
-- `views/`: Main application views/pages
-  - Each view has its own components folder for view-specific components
-  - Components are colocated with their styles for better maintainability
-  - Complex views use a barrel file (index.ts) to export their components
+#### Search View
+
+- Debounced search to prevent API spam
+- Results pagination
+- Loading states and error handling
+- Empty state handling
+
+#### Detail View
+
+- Movie metadata display
+- Poster image optimization
+- Back navigation
+- Loading and error states
+
+## 🛠️ Tech Stack
+
+- **Framework**: React 18 with TypeScript
+- **Styling**: [Panda CSS](https://panda-css.com/) for type-safe styling
+- **Build Tool**: Vite
+- **Package Manager**: pnpm
+- **API**: TMDB REST API
+
+## 📱 Screenshots
+
+### Search View
+
+![Search View](search.png)
+
+- Real-time search results
+- Movie cards with key information
+- Pagination for large result sets
+
+### Detail View
+
+![Detail View](detail.png)
+
+- High-resolution movie poster
+- Comprehensive movie information
+- Easy navigation back to search
+
+## 🧪 Development
+
+```bash
+# Run tests
+pnpm test
+
+# Check types
+pnpm typecheck
+
+# Lint code
+pnpm lint
+
+# Format code
+pnpm format
+```
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Run the test suite
+5. Submit a pull request
+
+## 📝 Notes
+
+- The app uses TMDB's free tier API which has rate limiting
+- Image optimization is handled through TMDB's image service
+- Styles are generated at build time using Panda CSS
+
+## 📄 License
+
+MIT License - feel free to use this project as a template for your own movie search application.
