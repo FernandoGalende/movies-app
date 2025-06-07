@@ -31,6 +31,7 @@ export function SearchForm({
           ariaLabel="Search movies"
           ariaDescribedby="search-description"
           autoComplete="off"
+          type="search"
         />
         {shouldShowClearButton && (
           <button
