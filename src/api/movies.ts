@@ -30,3 +30,8 @@ export const getMovies = async ({
 
   return fetcher(url);
 };
+
+export const getMovie = async (id: string): Promise<Movie> => {
+  const url = `${BASE_URL}/movie/${id}?api_key=${API_KEY}`;
+  return fetcher(url);
+};
