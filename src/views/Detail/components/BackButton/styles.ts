@@ -16,7 +16,7 @@ export const styles = {
     borderRadius: "4px",
     cursor: "pointer",
     transition: "all 0.2s ease",
-    _hover: {
+    "&:hover": {
       backgroundColor: "rgba(0, 0, 0, 0.05)",
     },
   }),

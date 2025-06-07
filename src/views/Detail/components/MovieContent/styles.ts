@@ -5,7 +5,7 @@ export const styles = {
     width: "100%",
     maxWidth: "500px",
     margin: "0 auto",
-    img: {
+    "& img": {
       width: "100%",
       height: "auto",
       borderRadius: "8px",
@@ -14,7 +14,7 @@ export const styles = {
   }),
   content: css({
     padding: "2rem",
-    h1: {
+    "& h1": {
       fontSize: "2rem",
       marginBottom: "1rem",
     },
@@ -28,12 +28,12 @@ export const styles = {
     display: "grid",
     gap: "1rem",
     gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-    div: {
+    "& div": {
       padding: "1rem",
       backgroundColor: "rgba(0, 0, 0, 0.05)",
       borderRadius: "4px",
     },
-    dt: {
+    "& dt": {
       fontWeight: "bold",
       marginBottom: "0.5rem",
     },
