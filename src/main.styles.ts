@@ -1,4 +1,4 @@
-import { css } from "../styled-system/css";
+import { css } from "@styled/css";
 // Add CSS reset
 export const resetStyles = css({
   "& *": {
