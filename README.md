@@ -24,31 +24,79 @@ export default tseslint.config({
   languageOptions: {
     // other options...
     parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
+      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
       tsconfigRootDir: import.meta.dirname,
     },
   },
-})
+});
 ```
 
 You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
 
 ```js
 // eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+import reactX from "eslint-plugin-react-x";
+import reactDom from "eslint-plugin-react-dom";
 
 export default tseslint.config({
   plugins: {
     // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
+    "react-x": reactX,
+    "react-dom": reactDom,
   },
   rules: {
     // other rules...
     // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
+    ...reactX.configs["recommended-typescript"].rules,
     ...reactDom.configs.recommended.rules,
   },
-})
+});
 ```
+
+## Project Structure
+
+```
+src/
+├── api/
+│   └── movies.ts          # API calls and services
+├── components/
+│   └── Input/            # Shared components
+│       ├── index.tsx
+│       └── styles.ts
+├── types/
+│   └── index.ts          # TypeScript interfaces and types
+└── views/
+    ├── Search/           # Search view
+    │   ├── components/
+    │   │   └── SearchForm/
+    │   │       ├── index.tsx
+    │   │       └── styles.ts
+    │   ├── index.tsx
+    │   └── styles.ts
+    └── Detail/           # Movie detail view
+        ├── components/
+        │   ├── BackButton/
+        │   │   ├── index.tsx
+        │   │   └── styles.ts
+        │   ├── MovieContent/
+        │   │   ├── index.tsx
+        │   │   └── styles.ts
+        │   ├── LoadingState/
+        │   │   ├── index.tsx
+        │   │   └── styles.ts
+        │   ├── ErrorState/
+        │   │   ├── index.tsx
+        │   │   └── styles.ts
+        │   └── index.ts
+        └── index.tsx
+```
+
+The project follows a feature-based structure where:
+
+- `api/`: Contains all API-related code and services
+- `components/`: Shared/reusable components used across the application
+- `types/`: TypeScript type definitions and interfaces
+- `views/`: Main application views/pages
+  - Each view has its own components folder for view-specific components
+  - Components are colocated with their styles for better maintainability
+  - Complex views use a barrel file (index.ts) to export their components

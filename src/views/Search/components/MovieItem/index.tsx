@@ -1,6 +1,7 @@
 import type { Movie } from "@/types";
 import { styles } from "./styles";
 import { useNavigate } from "react-router";
+import { MOVIE_DETAIL } from "@/router/paths";
 
 interface MovieItemProps {
   movie: Movie;
@@ -10,7 +11,7 @@ export function MovieItem({ movie }: MovieItemProps) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/detail/${movie.id}`);
+    navigate(MOVIE_DETAIL.replace(":id", movie.id.toString()));
   };
 
   return (
