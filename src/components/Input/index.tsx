@@ -14,9 +14,10 @@ export interface InputProps {
   id: string;
   type?: InputType;
   placeholder: string;
-  ariaLabel: string;
-  ariaDescribedby: string;
+  ariaDescribedby?: string;
   autoComplete: string;
+  hideLabel?: boolean;
+  className?: string;
 }
 
 export const Input: FC<InputProps> = ({
@@ -25,25 +26,25 @@ export const Input: FC<InputProps> = ({
   id,
   type = "text",
   placeholder,
-  ariaLabel,
   ariaDescribedby,
   autoComplete,
+  hideLabel = false,
   onChange,
+  className,
   ...props
 }) => {
   return (
     <label htmlFor={id} className={styles.label}>
-      {label}
+      <span className={hideLabel ? "sr-only" : ""}>{label}</span>
       <input
         id={id}
         type={type}
         value={query}
         onChange={onChange}
         placeholder={placeholder}
-        aria-label={ariaLabel}
         aria-describedby={ariaDescribedby}
         autoComplete={autoComplete}
-        className={styles.input}
+        className={`${styles.input} ${className || ""}`}
         {...props}
       />
     </label>

@@ -17,7 +17,6 @@ export const styles = {
     _focus: {
       outline: "none",
       borderColor: "primary",
-      boxShadow: "0 0 0 0.125rem rgba(220, 53, 69, 0.5)",
     },
   }),
 };

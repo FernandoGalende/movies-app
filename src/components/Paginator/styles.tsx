@@ -1,9 +1,10 @@
 import { css } from "../../../styled-system/css";
 
 export const styles = {
-  pagination: css({
+  wrapper: css({
     display: "flex",
-    justifyContent: "center",
+    alignItems: "center",
+    gap: "{spacing.sm}",
     margin: "md",
   }),
 };

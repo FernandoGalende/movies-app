@@ -1,1 +1,15 @@
 @layer reset, base, tokens, recipes, utilities;
+
+/* Base styles */
+body {
+  font-family:
+    "Inter Variable",
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    sans-serif;
+  font-optical-sizing: auto;
+  font-variation-settings: "slnt" 0;
+}

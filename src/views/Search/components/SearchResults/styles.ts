@@ -10,4 +10,12 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
   }),
+  resultsHeader: css({
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: "md",
+    textStyle: "supporting",
+    color: "secondary",
+  }),
 };

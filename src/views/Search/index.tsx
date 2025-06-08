@@ -3,38 +3,33 @@ import { SearchContainer } from "./components/SearchContainer";
 import { Paginator } from "@/components";
 import { useSearch } from "./hooks/useSearch";
 
+import { styles } from "./styles";
+
 export function Search() {
-  const {
-    query,
-    setQuery,
-    movies,
-    loading,
-    page,
-    setPage,
-    totalPages,
-    handleClear,
-    isEmptySearch,
-    showPagination,
-  } = useSearch();
+  const { query, setQuery, movies, page, setPage, totalPages, showPagination } =
+    useSearch();
 
   const headerContent = (
     <>
-      <SearchHeader loading={loading} isEmptySearch={isEmptySearch} />
-      <SearchForm
-        query={query}
-        onQueryChange={setQuery}
-        onClear={handleClear}
-        loading={loading}
-      />
+      <SearchHeader />
+      <SearchForm query={query} onQueryChange={setQuery} />
     </>
   );
 
   const mainContent = (
     <>
+      <SearchResults
+        movies={movies}
+        count={movies.length * totalPages}
+        query={query}
+        page={page}
+        totalPages={totalPages}
+      />
       {showPagination && (
-        <Paginator page={page} totalPages={totalPages} setPage={setPage} />
+        <div className={styles.pagination}>
+          <Paginator current={page} total={totalPages} onChange={setPage} />
+        </div>
       )}
-      <SearchResults movies={movies} />
     </>
   );
 
