@@ -1,5 +1,6 @@
 import { Search, Detail } from "./views";
 import { BrowserRouter, Routes, Route } from "react-router";
+import "./index.css";
 
 export function App() {
   return (

@@ -1,4 +1,4 @@
-import { css } from "@styled/css";
+import { css } from "../../../styled-system/css";
 
 export const styles = {
   root: css({
@@ -19,7 +19,6 @@ export const styles = {
     flex: 1,
     overflow: "hidden",
     padding: "1rem",
-    backgroundColor: "background",
     width: "100%",
   }),
 };
