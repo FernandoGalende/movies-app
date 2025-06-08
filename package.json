@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "pnpm prepare && tsc -b && vite build",
-    "lint": "eslint .",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ignore-pattern 'styled-system/**'",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "prepare": "panda codegen"

@@ -1,4 +1,4 @@
-import { css } from "@styled/css";
+import { css } from "../../../../../styled-system/css";
 
 export const styles = {
   imageContainer: css({

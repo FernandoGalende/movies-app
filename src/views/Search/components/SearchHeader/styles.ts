@@ -1,4 +1,4 @@
-import { css } from "@styled/css";
+import { css } from "../../../../../styled-system/css";
 
 export const styles = {
   headerContent: css({
@@ -8,6 +8,7 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    backgroundColor: "red",
   }),
 
   title: css({

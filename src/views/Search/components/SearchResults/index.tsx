@@ -1,4 +1,3 @@
-import { visuallyHidden } from "@styled/patterns";
 import { styles } from "./styles";
 import { List } from "../List";
 import type { Movie } from "@/types";
@@ -12,7 +11,7 @@ export function SearchResults({ movies }: SearchResultsProps) {
 
   return (
     <section aria-label="Search results" className={styles.results}>
-      <h2 className={visuallyHidden()}>Search Results</h2>
+      <h2>Search Results</h2>
       <List movies={movies} />
     </section>
   );

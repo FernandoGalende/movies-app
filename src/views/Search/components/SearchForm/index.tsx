@@ -1,4 +1,3 @@
-import { visuallyHidden } from "@styled/patterns";
 import { styles } from "./styles";
 import { Input } from "@/components";
 
@@ -42,7 +41,7 @@ export function SearchForm({
             Clear
           </button>
         )}
-        <p id="search-description" className={visuallyHidden()}>
+        <p id="search-description">
           Start typing to search. Results will appear after {MIN_SEARCH_LENGTH}{" "}
           characters.
         </p>
