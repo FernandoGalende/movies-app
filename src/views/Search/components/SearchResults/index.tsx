@@ -4,14 +4,35 @@ import type { Movie } from "@/types";
 
 interface SearchResultsProps {
   movies: Movie[];
+  count: number;
+  query: string;
+  page: number;
+  totalPages: number;
 }
 
-export function SearchResults({ movies }: SearchResultsProps) {
+export function SearchResults({
+  movies,
+  count,
+  page,
+  totalPages,
+  query,
+}: SearchResultsProps) {
   if (movies.length === 0) return null;
 
   return (
     <section aria-label="Search results" className={styles.results}>
-      <h2>Search Results</h2>
+      <div className={styles.resultsHeader}>
+        {/* 
+          aria-live="polite": Announces changes to screen readers without interrupting current speech
+          aria-atomic="true": Reads the entire content when changed, not just the part that changed
+        */}
+        <p aria-live="polite" aria-atomic="true">
+          Found {count} results for "{query}"
+        </p>
+        <p aria-live="polite" aria-atomic="true">
+          Page {page} of {totalPages}
+        </p>
+      </div>
       <List movies={movies} />
     </section>
   );

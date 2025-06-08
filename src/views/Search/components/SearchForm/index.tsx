@@ -4,20 +4,11 @@ import { Input } from "@/components";
 interface SearchFormProps {
   query: string;
   onQueryChange: (query: string) => void;
-  onClear: () => void;
-  loading: boolean;
 }
 
 const MIN_SEARCH_LENGTH = 3;
 
-export function SearchForm({
-  query,
-  onQueryChange,
-  onClear,
-  loading,
-}: SearchFormProps) {
-  const shouldShowClearButton = query.length > 2 && !loading;
-
+export function SearchForm({ query, onQueryChange }: SearchFormProps) {
   return (
     <form role="search" onSubmit={(e) => e.preventDefault()}>
       <div className={styles.searchContainer}>
@@ -27,21 +18,12 @@ export function SearchForm({
           label="Search movies"
           id="movie-search"
           placeholder="Type to search movies..."
-          ariaLabel="Search movies"
           ariaDescribedby="search-description"
           autoComplete="off"
           type="search"
+          hideLabel={true}
         />
-        {shouldShowClearButton && (
-          <button
-            onClick={onClear}
-            type="button"
-            aria-label="Clear search"
-            className={styles.button}>
-            Clear
-          </button>
-        )}
-        <p id="search-description">
+        <p id="search-description" className="sr-only">
           Start typing to search. Results will appear after {MIN_SEARCH_LENGTH}{" "}
           characters.
         </p>

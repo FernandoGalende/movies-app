@@ -3,25 +3,20 @@ import { css } from "../../../../../styled-system/css";
 export const styles = {
   headerContent: css({
     width: "100%",
-    maxWidth: "searchContainer",
-    margin: "0 auto",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    backgroundColor: "red",
+    gap: "xs",
+    padding: "md",
   }),
-
   title: css({
-    fontSize: "2rem",
-    marginBottom: "2rem",
-    color: "text",
-    textAlign: "center",
-    width: "100%",
+    textStyle: "heading1",
+    background: "gradients.primary",
+    backgroundClip: "text",
+    color: "transparent",
   }),
-
-  status: css({
-    padding: "0.5rem",
-    color: "text",
-    fontSize: "0.875rem",
+  description: css({
+    textStyle: "body",
+    color: "secondary",
   }),
 };
