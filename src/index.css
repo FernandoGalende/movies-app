@@ -12,6 +12,7 @@ body {
     sans-serif;
   font-optical-sizing: auto;
   font-variation-settings: "slnt" 0;
+  overscroll-behavior: none;
 
   /*
  * I have added this to set the outline style easy to see for people with disabilities
