@@ -1,4 +1,5 @@
 import { Button } from "../";
+
 import { styles } from "./styles";
 
 export interface PaginatorProps {
@@ -7,6 +8,8 @@ export interface PaginatorProps {
   onChange: (page: number) => void;
   className?: string;
 }
+
+const MAX_BUTTONS = 4;
 
 export function Paginator({
   current,
@@ -24,14 +27,37 @@ export function Paginator({
     if (current < total) onChange(current + 1);
   };
 
+  const renderButtons = () => {
+    const buttons = [];
+    let start = Math.max(1, current - 2);
+    const end = Math.min(total, start + MAX_BUTTONS);
+
+    // If we're near the end, adjust start to show 5 buttons
+    if (end === total) {
+      start = Math.max(1, end - MAX_BUTTONS);
+    }
+
+    for (let i = start; i <= end; i++) {
+      buttons.push(i);
+    }
+
+    return buttons.map((page) => (
+      <Button
+        key={page}
+        onClick={() => onChange(page)}
+        disabled={page === current}
+        size="sm">
+        {page}
+      </Button>
+    ));
+  };
+
   return (
     <div className={`${styles.wrapper} ${className || ""}`}>
       <Button onClick={handlePrevious} disabled={current === 1} size="sm">
         Prev
       </Button>
-      <Button disabled variant="secondary" size="sm">
-        {current}
-      </Button>
+      {renderButtons()}
       <Button onClick={handleNext} disabled={current === total} size="sm">
         Next
       </Button>

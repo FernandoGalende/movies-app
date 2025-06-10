@@ -2,21 +2,17 @@ import { css } from "../../../styled-system/css";
 
 export const styles = {
   label: css({
-    fontWeight: "500",
+    textStyle: "body",
     width: "100%",
     textAlign: "left",
   }),
 
   input: css({
-    padding: "0.5rem 2.75rem 0.5rem 0.75rem",
-    fontSize: "1rem",
-    border: "0.125rem solid token(colors.border)",
-    borderRadius: "0.25rem",
+    padding: "{spacing.sm} {spacing.md}",
+    textStyle: "body ",
+    border: "{borderWidths.sm} solid token(colors.border)",
+    borderRadius: "md",
     width: "100%",
-    minHeight: "2.75rem",
-    _focus: {
-      outline: "none",
-      borderColor: "primary",
-    },
+    minHeight: "{spacing.md}",
   }),
 };

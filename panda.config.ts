@@ -18,8 +18,20 @@ export const textStyles = defineTextStyles({
     value: {
       fontFamily: "Inter",
       fontWeight: "400",
-      fontSize: "16px",
-      lineHeight: "24px",
+      fontSize: "1rem",
+      lineHeight: "1.5rem",
+      letterSpacing: "0",
+      textDecoration: "None",
+      textTransform: "None",
+    },
+  },
+  bodyBold: {
+    description: "The body text style - used in p tags",
+    value: {
+      fontFamily: "Inter",
+      fontWeight: "600",
+      fontSize: "1rem",
+      lineHeight: "1.5rem",
       letterSpacing: "0",
       textDecoration: "None",
       textTransform: "None",
@@ -81,11 +93,14 @@ export default defineConfig({
         },
         colors: {
           primary: { value: "#2563eb" },
+          primaryHover: { value: "#1d4ed8" },
           secondary: { value: "#6c757d" },
           error: { value: "#dc3545" },
           background: { value: "#f8f9fa" },
+          backgroundError: { value: "#f8d7da" },
           text: { value: "#212529" },
           border: { value: "#dee2e6" },
+          white: { value: "#ffffff" },
           gradients: {
             primary: {
               value:
@@ -94,16 +109,27 @@ export default defineConfig({
           },
         },
         spacing: {
-          xs: { value: "0.25rem" },
-          sm: { value: "0.5rem" },
-          md: { value: "1rem" },
-          lg: { value: "1.5rem" },
+          xxs: { value: "0.125rem" }, // 2px
+          xs: { value: "0.25rem" }, // 4px
+          sm: { value: "0.5rem" }, // 8px
+          md: { value: "1rem" }, // 16px
+          lg: { value: "1.5rem" }, // 24px
           xl: { value: "2rem" },
         },
+        sizes: {
+          sm: { value: "1rem" }, // 16px
+          md: { value: "2rem" }, // 32px
+          lg: { value: "4rem" }, // 64px
+        },
         radii: {
-          sm: { value: "0.25rem" },
-          md: { value: "0.5rem" },
-          lg: { value: "1rem" },
+          sm: { value: "0.25rem" }, // 4px
+          md: { value: "0.5rem" }, // 8px
+          lg: { value: "1rem" }, // 16px
+        },
+        borderWidths: {
+          sm: { value: "0.125rem" }, // 2px
+          md: { value: "0.25rem" }, // 4px
+          lg: { value: "0.5rem" }, // 8px
         },
       },
     },

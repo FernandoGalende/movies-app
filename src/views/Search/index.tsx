@@ -9,10 +9,15 @@ export function Search() {
   const { query, setQuery, movies, page, setPage, totalPages, showPagination } =
     useSearch();
 
+  const handleOnQueryChange = (query: string) => {
+    setPage(1);
+    setQuery(query);
+  };
+
   const headerContent = (
     <>
       <SearchHeader />
-      <SearchForm query={query} onQueryChange={setQuery} />
+      <SearchForm query={query} onQueryChange={handleOnQueryChange} />
     </>
   );
 

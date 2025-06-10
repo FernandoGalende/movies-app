@@ -1,5 +1,6 @@
+import { Button } from "@/components";
+
 import {
-  BackButton,
   MovieContent,
   LoadingState,
   ErrorState,
@@ -10,7 +11,11 @@ import { useMovieDetail } from "./hooks/useMovieDetail";
 export function Detail() {
   const { movie, isLoading, error, handleBack } = useMovieDetail();
 
-  const navigation = <BackButton onBack={handleBack} />;
+  const navigation = (
+    <Button onClick={handleBack} aria-label="Return to movie search">
+      ← Back to search
+    </Button>
+  );
 
   const content = (
     <>

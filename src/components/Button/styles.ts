@@ -11,19 +11,14 @@ export const buttonStyles = cva({
     fontWeight: "medium",
     transition: "all 0.2s",
     textDecoration: "none",
-    fontSize: "md",
+    textStyle: "body",
     padding: "{spacing.sm} {spacing.md}",
     minHeight: "10",
     backgroundColor: "primary",
     color: "white",
     minWidth: "10",
     _hover: {
-      backgroundColor: "blue.600",
-    },
-    _focus: {
-      outline: "2px solid",
-      outlineColor: "primary",
-      outlineOffset: "2px",
+      backgroundColor: "primaryHover",
     },
     _disabled: {
       opacity: 0.5,

@@ -1,3 +1,4 @@
+import { useLayoutEffect, useRef } from "react";
 import { styles } from "./styles";
 import { List } from "../List";
 import type { Movie } from "@/types";
@@ -17,11 +18,19 @@ export function SearchResults({
   totalPages,
   query,
 }: SearchResultsProps) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [page]);
+
   if (movies.length === 0) return null;
 
   return (
     <section aria-label="Search results" className={styles.results}>
-      <div className={styles.resultsHeader}>
+      <div className={styles.resultsHeader} ref={ref}>
         {/* 
           aria-live="polite": Announces changes to screen readers without interrupting current speech
           aria-atomic="true": Reads the entire content when changed, not just the part that changed

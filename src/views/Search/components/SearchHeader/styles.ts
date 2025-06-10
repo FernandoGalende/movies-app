@@ -6,8 +6,8 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "xs",
-    padding: "md",
+    gap: "{spacing.xs}",
+    padding: "{spacing.md}",
   }),
   title: css({
     textStyle: "heading1",

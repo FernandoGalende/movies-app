@@ -7,13 +7,13 @@ export const styles = {
     minHeight: "100vh",
   }),
   header: css({
-    padding: "2rem",
+    padding: "{spacing.md}",
     backgroundColor: "white",
-    borderBottom: "1px solid",
+    borderBottom: "{borderWidths.sm} solid",
     borderColor: "border",
   }),
   main: css({
     flex: 1,
-    padding: "2rem",
+    padding: "{spacing.md}",
   }),
 };

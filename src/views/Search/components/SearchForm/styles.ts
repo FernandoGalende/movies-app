@@ -6,6 +6,6 @@ export const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "0.5rem",
+    gap: "{spacing.sm}",
   }),
 };
