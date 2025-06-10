@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { styles } from "./styles";
+
 interface DetailContainerProps {
   navigation: ReactNode;
   content: ReactNode;
@@ -7,7 +9,7 @@ interface DetailContainerProps {
 
 export function DetailContainer({ navigation, content }: DetailContainerProps) {
   return (
-    <main>
+    <main className={styles.main}>
       {navigation}
       {content}
     </main>

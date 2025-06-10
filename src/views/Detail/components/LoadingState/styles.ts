@@ -2,9 +2,9 @@ import { css } from "../../../../../styled-system/css";
 
 export const styles = {
   loading: css({
-    padding: "2rem",
+    padding: "{spacing.md}",
     textAlign: "center",
-    fontSize: "1.2rem",
-    color: "gray",
+    textStyle: "body",
+    color: "secondary",
   }),
 };

@@ -12,4 +12,15 @@ body {
     sans-serif;
   font-optical-sizing: auto;
   font-variation-settings: "slnt" 0;
+
+  /*
+ * I have added this to set the outline style easy to see for people with disabilities
+ * also the outline color is set to by default to the browser's focus ring color
+ * that way user can customize the outline color if they want to. 
+ */
+  outline-style: auto;
+  outline-width: 1px;
+  outline-offset: 4px;
+  outline-color: Highlight;
+  outline-color: -webkit-focus-ring-color;
 }

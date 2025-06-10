@@ -14,7 +14,7 @@ export const styles = {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: "md",
+    marginBottom: "{spacing.md}",
     textStyle: "supporting",
     color: "secondary",
   }),
