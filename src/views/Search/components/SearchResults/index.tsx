@@ -26,7 +26,7 @@ export function SearchResults({
     }
   }, [page]);
 
-  if (movies.length === 0) return null;
+  if (movies.length === 0) return <div>No results found</div>;
 
   return (
     <section aria-label="Search results" className={styles.results}>
