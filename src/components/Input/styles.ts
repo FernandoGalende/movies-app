@@ -14,5 +14,12 @@ export const styles = {
     borderRadius: "md",
     width: "100%",
     minHeight: "{spacing.md}",
+    "&::-webkit-search-cancel-button": {
+      appearance: "auto",
+      cursor: "pointer",
+      minWidth: "{sizes.sm}",
+      minHeight: "{sizes.sm}",
+      padding: "{spacing.sm}",
+    },
   }),
 };

@@ -114,12 +114,13 @@ export default defineConfig({
           sm: { value: "0.5rem" }, // 8px
           md: { value: "1rem" }, // 16px
           lg: { value: "1.5rem" }, // 24px
-          xl: { value: "2rem" },
+          xl: { value: "2rem" }, // 32px
         },
         sizes: {
           sm: { value: "1rem" }, // 16px
           md: { value: "2rem" }, // 32px
-          lg: { value: "4rem" }, // 64px
+          lg: { value: "3rem" }, // 48px
+          xl: { value: "4rem" }, // 64px
         },
         radii: {
           sm: { value: "0.25rem" }, // 4px
