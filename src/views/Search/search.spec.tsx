@@ -132,7 +132,7 @@ describe("Search page", () => {
     expect(statusElement).toHaveAttribute("aria-live", "polite");
   });
 
-  it.only("should show search results with count and pagination info", async () => {
+  it("should show search results with count and pagination info", async () => {
     // Mock API to return some movie results
     vi.mocked(moviesApi.getMovies).mockResolvedValue({
       page: "1",
@@ -193,5 +193,25 @@ describe("Search page", () => {
     // Check that movie results are displayed
     expect(screen.getByText("The Matrix")).toBeVisible();
     expect(screen.getByText("The Matrix Reloaded")).toBeVisible();
+
+    // Check that movie details are accessible
+    const matrixCard = screen.getByRole("button", {
+      name: /View details for The Matrix/i,
+    });
+    expect(matrixCard).toBeVisible();
+    expect(matrixCard).toHaveAttribute(
+      "aria-label",
+      /View details for The Matrix/i
+    );
+
+    // Check that movie details are accessible
+    expect(matrixCard).toHaveAttribute("aria-describedby", /movie-1-overview/i);
+    const mockNavigate = vi.fn();
+    vi.mock("react-router", () => ({
+      ...vi.importActual("react-router"),
+      useNavigate: () => mockNavigate,
+    }));
+    matrixCard.click();
+    expect(mockNavigate).toHaveBeenCalledWith("/movie/1");
   });
 });

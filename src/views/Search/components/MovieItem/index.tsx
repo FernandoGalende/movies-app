@@ -39,7 +39,7 @@ export function MovieItem({ movie }: MovieItemProps) {
 
   return (
     <li className={styles.movieItem}>
-      <article
+      <div
         className={styles.movieCard}
         onClick={handleClick}
         onKeyDown={handleKeyDown}
@@ -81,7 +81,7 @@ export function MovieItem({ movie }: MovieItemProps) {
             {truncatedOverview}
           </p>
         </div>
-      </article>
+      </div>
     </li>
   );
 }

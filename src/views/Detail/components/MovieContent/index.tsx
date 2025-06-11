@@ -11,7 +11,7 @@ export const MovieContent = ({ movie }: MovieContentProps) => (
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
         alt={`Movie poster for ${movie.title}`}
-        loading="lazy"
+        loading="lazy" // lazy loading is used to improve the performance of the page only load the image when it is visible
       />
     </div>
 
@@ -30,7 +30,9 @@ export const MovieContent = ({ movie }: MovieContentProps) => (
           </div>
 
           <div>
+            {/* dt is description term */}
             <dt>Rating</dt>
+            {/* dd is description details */}
             <dd>
               <span aria-label={`${movie.vote_average} out of 10`}>
                 {movie.vote_average}

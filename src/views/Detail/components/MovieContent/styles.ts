@@ -39,7 +39,7 @@ export const styles = {
   }),
   votes: css({
     textStyle: "body",
-    color: "secondary",
+    color: "text",
     marginLeft: "{spacing.sm}",
   }),
 };
