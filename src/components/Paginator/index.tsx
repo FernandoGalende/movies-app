@@ -46,21 +46,52 @@ export function Paginator({
         key={page}
         onClick={() => onChange(page)}
         disabled={page === current}
-        size="sm">
+        size="sm"
+        aria-label={
+          page === current ? `Current page ${page}` : `Go to page ${page}`
+        }
+        aria-current={page === current ? "page" : undefined}>
         {page}
       </Button>
     ));
   };
 
   return (
-    <div className={`${styles.wrapper} ${className || ""}`}>
-      <Button onClick={handlePrevious} disabled={current === 1} size="sm">
-        Prev
-      </Button>
-      {renderButtons()}
-      <Button onClick={handleNext} disabled={current === total} size="sm">
-        Next
-      </Button>
-    </div>
+    <nav
+      className={`${styles.wrapper} ${className || ""}`}
+      aria-label="Pagination Navigation"
+      role="navigation">
+      <div className={styles.paginationContainer}>
+        <Button
+          onClick={handlePrevious}
+          disabled={current === 1}
+          size="sm"
+          aria-label={`Go to previous page, current page is ${current}`}>
+          <span aria-hidden="true">‹</span>
+          <span>Prev</span>
+        </Button>
+
+        <div
+          className={styles.pageNumbers}
+          role="group"
+          aria-label="Page numbers">
+          {renderButtons()}
+        </div>
+
+        <Button
+          onClick={handleNext}
+          disabled={current === total}
+          size="sm"
+          aria-label={`Go to next page, current page is ${current}`}>
+          <span>Next</span>
+          <span aria-hidden="true">›</span>
+        </Button>
+      </div>
+
+      {/* Screen reader only pagination status */}
+      <div className="sr-only" aria-live="polite" aria-atomic="true">
+        Page {current} of {total}
+      </div>
+    </nav>
   );
 }

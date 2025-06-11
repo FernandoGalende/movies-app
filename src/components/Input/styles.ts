@@ -1,6 +1,13 @@
 import { css } from "../../../styled-system/css";
 
 export const styles = {
+  inputContainer: css({
+    display: "flex",
+    flexDirection: "column",
+    gap: "{spacing.xs}",
+    width: "100%",
+  }),
+
   label: css({
     textStyle: "body",
     width: "100%",
@@ -14,6 +21,8 @@ export const styles = {
     borderRadius: "md",
     width: "100%",
     minHeight: "{spacing.md}",
+    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
+
     "&::-webkit-search-cancel-button": {
       appearance: "auto",
       cursor: "pointer",
