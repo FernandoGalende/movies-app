@@ -120,6 +120,12 @@ pnpm format
 - Image optimization is handled through TMDB's image service
 - Styles are generated at build time using Panda CSS
 
+## 🚧 Todo
+
+1. Improve empty states
+2. Do end 2 end testing
+3. Increase coverage test
+
 ## 📄 License
 
 MIT License - feel free to use this project as a template for your own movie search application.

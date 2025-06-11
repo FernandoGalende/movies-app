@@ -6,8 +6,16 @@ import { useSearch } from "./hooks/useSearch";
 import { styles } from "./styles";
 
 export function Search() {
-  const { query, setQuery, movies, page, setPage, totalPages, showPagination } =
-    useSearch();
+  const {
+    query,
+    setQuery,
+    movies,
+    page,
+    setPage,
+    totalPages,
+    showPagination,
+    loading,
+  } = useSearch();
 
   const handleOnQueryChange = (query: string) => {
     setPage(1);
@@ -29,12 +37,13 @@ export function Search() {
         query={query}
         page={page}
         totalPages={totalPages}
-      />
-      {showPagination && (
-        <div className={styles.pagination}>
-          <Paginator current={page} total={totalPages} onChange={setPage} />
-        </div>
-      )}
+        loading={loading}>
+        {showPagination && (
+          <div className={styles.pagination}>
+            <Paginator current={page} total={totalPages} onChange={setPage} />
+          </div>
+        )}
+      </SearchResults>
     </>
   );
 

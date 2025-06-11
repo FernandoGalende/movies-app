@@ -26,6 +26,17 @@ export function MovieItem({ movie }: MovieItemProps) {
     ? new Date(movie.release_date).getFullYear()
     : null;
 
+  // Better image alt text
+  const imageAlt = movie.poster_path
+    ? `Movie poster for ${movie.title}${year ? ` released in ${year}` : ""}`
+    : `No poster available for ${movie.title}`;
+
+  // Truncate overview for better screen reader experience
+  const truncatedOverview =
+    movie.overview.length > 150
+      ? movie.overview.substring(0, 150) + "..."
+      : movie.overview;
+
   return (
     <li className={styles.movieItem}>
       <article
@@ -34,20 +45,41 @@ export function MovieItem({ movie }: MovieItemProps) {
         onKeyDown={handleKeyDown}
         tabIndex={0}
         role="button"
-        aria-label={`View details for ${movie.title}${year ? ` (${year})` : ""}`}>
+        aria-label={`View details for ${movie.title}${year ? ` (${year})` : ""}. Rating: ${movie.vote_average.toFixed(1)} out of 10.`}
+        aria-describedby={`movie-${movie.id}-overview`}>
         <div className={styles.posterContainer}>
-          <img
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-            alt={movie.title}
-            className={styles.poster}
-          />
+          {movie.poster_path ? (
+            <img
+              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+              alt={imageAlt}
+              className={styles.poster}
+              loading="lazy"
+            />
+          ) : (
+            <div
+              className={styles.posterContainer}
+              aria-label={imageAlt}
+              role="img">
+              <span aria-hidden="true">🎬</span>
+              <span className="sr-only">{imageAlt}</span>
+            </div>
+          )}
           <Rating rating={movie.vote_average} />
         </div>
 
         <div className={styles.content}>
-          <h3 className={styles.title}>{movie.title}</h3>
-          {year && <p className={styles.year}>{year}</p>}
-          <p className={styles.overview}>{movie.overview}</p>
+          <h2 className={styles.title}>{movie.title}</h2>
+          {year && (
+            <p className={styles.year} aria-label={`Released in ${year}`}>
+              {year}
+            </p>
+          )}
+          <p
+            className={styles.overview}
+            id={`movie-${movie.id}-overview`}
+            aria-label={`Plot summary: ${truncatedOverview}`}>
+            {truncatedOverview}
+          </p>
         </div>
       </article>
     </li>
@@ -55,10 +87,18 @@ export function MovieItem({ movie }: MovieItemProps) {
 }
 
 function Rating({ rating }: { rating: number }) {
+  const formattedRating = rating.toFixed(1);
+
   return (
-    <div className={styles.rating}>
-      <span className={styles.star}>★</span>
-      <span className={styles.ratingValue}>{rating.toFixed(1)}</span>
+    <div
+      className={styles.rating}
+      aria-label={`Rating: ${formattedRating} out of 10 stars`}
+      role="img">
+      <span aria-hidden="true">★</span>
+      <span className={styles.ratingValue} aria-hidden="true">
+        {formattedRating}
+      </span>
+      <span className="sr-only">Rated {formattedRating} out of 10 stars</span>
     </div>
   );
 }
