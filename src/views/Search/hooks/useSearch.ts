@@ -3,8 +3,6 @@ import { useDebounce } from "react-use";
 import { getMovies } from "@/api/movies";
 import type { Movie } from "@/types";
 
-export const MIN_SEARCH_LENGTH = 3;
-
 interface UseSearchReturn {
   query: string;
   setQuery: (query: string) => void;
@@ -25,12 +23,11 @@ export function useSearch(): UseSearchReturn {
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
 
-  const isEmptySearch =
-    query.length > MIN_SEARCH_LENGTH && !loading && movies.length === 0;
+  const isEmptySearch = query.length > 0 && !loading && movies.length === 0;
   const showPagination = totalPages > 1 && !loading && movies.length > 0;
 
   useEffect(() => {
-    if (query.length >= MIN_SEARCH_LENGTH) {
+    if (query.length > 0) {
       setLoading(true);
     }
   }, [query]);
@@ -74,7 +71,7 @@ export function useSearch(): UseSearchReturn {
     query,
     setQuery,
     movies,
-    loading, // TODO: add loading state to the search results
+    loading,
     page,
     setPage,
     totalPages,
