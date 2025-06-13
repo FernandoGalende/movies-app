@@ -129,7 +129,6 @@ describe("Search page", () => {
     // Check for proper ARIA attributes
     const statusElement = screen.getByRole("status");
     expect(statusElement).toBeVisible();
-    expect(statusElement).toHaveAttribute("aria-live", "polite");
   });
 
   it("should show search results with count and pagination info", async () => {

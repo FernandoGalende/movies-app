@@ -98,6 +98,7 @@ export const styles = {
     opacity: 0.7,
     overflow: "hidden",
     textOverflow: "ellipsis",
+    whiteSpace: "nowrap",
     maxHeight: "{sizes.md}",
     flex: 1,
   }),

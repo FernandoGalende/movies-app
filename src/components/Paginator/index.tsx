@@ -89,7 +89,7 @@ export function Paginator({
       </div>
 
       {/* Screen reader only pagination status */}
-      <div className="sr-only" aria-live="polite" aria-atomic="true">
+      <div className="sr-only">
         Page {current} of {total}
       </div>
     </nav>
