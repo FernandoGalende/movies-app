@@ -6,7 +6,7 @@ export type MovieContentProps = {
 };
 
 export const MovieContent = ({ movie }: MovieContentProps) => (
-  <article aria-labelledby="movie-title">
+  <article data-testid="movie-detail" aria-labelledby="movie-title">
     <div className={styles.imageContainer}>
       <img
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}

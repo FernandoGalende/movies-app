@@ -60,7 +60,7 @@ export const styles = {
   }),
 
   star: css({
-    color: "#FFD700",
+    color: "#FFD700", // only
     textStyle: "supporting",
   }),
 
