@@ -31,8 +31,15 @@ jobs:
         run: |
           pnpm run lint &
           pnpm run typecheck &
-          pnpm run test &
+          pnpm run test & 
           wait
+
+      - name: ✅ Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          wait-on: http://localhost:5173
+          start: npx vite --host
+          browser: chrome
 
       - name: 🛠️ Setup Vercel CLI
         run: pnpm add --global vercel@latest
