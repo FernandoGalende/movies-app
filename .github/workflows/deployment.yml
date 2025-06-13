@@ -29,10 +29,9 @@ jobs:
         run: pnpm install
       - name: 🔍 Run checks
         run: |
-          pnpm run lint &
-          pnpm run typecheck &
-          pnpm run test & 
-          wait
+          pnpm run lint
+          pnpm run typecheck
+          pnpm run test
 
       - name: ✅ Cypress run
         uses: cypress-io/github-action@v6
