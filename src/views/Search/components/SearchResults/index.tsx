@@ -39,7 +39,7 @@ export function SearchResults({
   }
 
   return (
-    <section aria-label="Search results" className={styles.results}>
+    <section data-testid="search-results" className={styles.results}>
       <ResultsHeader
         count={count}
         query={query}

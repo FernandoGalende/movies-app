@@ -12,7 +12,10 @@ export function Detail() {
   const { movie, isLoading, error, handleBack } = useMovieDetail();
 
   const navigation = (
-    <Button onClick={handleBack} aria-label="Return to movie search">
+    <Button
+      onClick={handleBack}
+      aria-label="Return to movie search"
+      data-testid="back-to-search">
       ← Back to search
     </Button>
   );
