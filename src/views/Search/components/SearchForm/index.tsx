@@ -6,8 +6,6 @@ interface SearchFormProps {
   onQueryChange: (query: string) => void;
 }
 
-const MIN_SEARCH_LENGTH = 3;
-
 export function SearchForm({ query, onQueryChange }: SearchFormProps) {
   return (
     <form role="search" onSubmit={(e) => e.preventDefault()}>
@@ -24,8 +22,7 @@ export function SearchForm({ query, onQueryChange }: SearchFormProps) {
           hideLabel={true}
         />
         <p id="search-description" className="sr-only">
-          Start typing to search. Results will appear after {MIN_SEARCH_LENGTH}{" "}
-          characters.
+          Start typing to search.
         </p>
       </div>
     </form>
