@@ -1,131 +1,150 @@
-# 🎬 Movie Search App
+# Movies App
 
-A modern movie search application built with React that lets you explore movies using [The Movie Database (TMDB)](https://www.themoviedb.org/) API.
+[Link to deployed app in Vercel](https://movies-app-alpha-orpin.vercel.app/)
 
-![Movie Search Demo](demo.gif)
+## Intro
 
-## 🚀 Quick Start
+This is a Single Page Application created with Vite using a React TypeScript template. The app allows users to search for movies and view their details using the TMDB API.
 
-```bash
-# Install dependencies
-pnpm install
+## Instructions
 
-# Start development server
-pnpm dev
+The website features a search functionality where users can look up movies. The search is triggered after typing at least 3 characters, with a debounce of 500ms to prevent excessive API calls. The api is cached in memory for better performance. Users can view movie details by clicking on a movie card, and navigate back to the search results. The app implements pagination for search results and includes loading / em states for better user experience.
 
-# Build for production
-pnpm build
-```
+## Getting started locally with pnpm
 
-## 🔑 Environment Setup
+1. Ensure [Node.js](https://nodejs.org/) is installed.
+1. Install [pnpm](https://pnpm.io/installation) globally: `$ npm install -g pnpm`
+1. Clone the repository: `$ git clone https://github.com/FernandoGalende/movies-app`
+1. Install packages `$ pnpm install`
+1. Start the development server: `$ pnpm dev` + open `http://127.0.0.1:5173`
+1. Run tests: `$ pnpm test`
+1. Open Cypress: `$ pnpm cypress:open`. The project should be running on PORT: `http://127.0.0.1:5173`
 
-Create a `.env` file in the root directory:
+## My Approach
 
-```env
-VITE_TMDB_API_KEY=your_tmdb_api_key
-VITE_TMDB_API_URL=https://api.themoviedb.org/3
-```
+### Error Handling
 
-Get your API key by [creating an account on TMDB](https://www.themoviedb.org/signup).
+I have implemented proper error handling for API calls and user interactions, with appropriate loading states and error messages.
 
-## 🎯 Features
-
-- **Real-time Search**: Results update as you type (with debouncing)
-- **Movie Details**: View comprehensive information about each movie
-- **Responsive Design**: Works seamlessly on mobile and desktop
-- **Accessibility**: Full keyboard navigation and screen reader support
-- **Error Handling**: Clear feedback for API errors and empty states
-
-## 🏗️ Project Overview
+## Architecture
 
 ```
-src/
-├── views/               # Main features
-│   ├── Search/         # Movie search & results
-│   └── Detail/         # Movie information
-├── components/         # Shared UI components
-├── api/               # TMDB API integration
-└── types/            # TypeScript definitions
+├── .github // ci/cd setup here
+│   └── ...
+│
+├── public
+│   ├── favicon.ico
+│   └── index.html
+│
+├── cypress
+│   ├── e2e // e2e test cases here
+│   └── ..
+│
+├── dist // bundle
+│   └── ...
+│
+└── src
+    ├── api // TMDB api integration
+    │   └── ...
+    │
+    ├── components // shared components
+    │   └── ...
+    │
+    ├── views // pages on the app
+    │   └── Search
+    │   └── Detail
+    │
+    ├── hooks // custom hooks
+    │   └── useSearch
+    │
+    ├── types
+    │
+    ├── router
+    │   └── routes
+    │
+    ├── styles
+    │   └── components
+    │   └── theme
+    │   └── global
+    │
+    ├── App.tsx
+    └── main.tsx
 ```
 
-### Key Features Implementation
+## CI / CD
 
-#### Search View
+I have created a ci/cd for running these steps:
 
-- Debounced search to prevent API spam
-- Results pagination
-- Loading states and error handling
-- Empty state handling
+- Lint
+- TS check
+- Unit testing
+- End2End testing
+- Deploy to Vercel
 
-#### Detail View
+## Technologies
 
-- Movie metadata display
-- Poster image optimization
-- Back navigation
-- Loading and error states
+### TypeScript
 
-## 🛠️ Tech Stack
+I like TS because of:
 
-- **Framework**: React 18 with TypeScript
-- **Styling**: [Panda CSS](https://panda-css.com/) for type-safe styling
-- **Build Tool**: Vite
-- **Package Manager**: pnpm
-- **API**: TMDB REST API
+- Compilation time errors
+- Make development faster
+- Easy to scale up
+- More structured code
+- Re-usable types
+- Fast refactoring
+- Less errors
 
-## 📱 Screenshots
+### Vite
 
-### Search View
+- Fast development server
+- Tree shaking
+- Hot Module Replacement
+- Fast and optimized build
 
-![Search View](search.png)
+### Pnpm
 
-- Real-time search results
-- Movie cards with key information
-- Pagination for large result sets
+- Faster
+- Symlinks concept
 
-### Detail View
+### Vitest
 
-![Detail View](detail.png)
+- Performance
+- Easy config
 
-- High-resolution movie poster
-- Comprehensive movie information
-- Easy navigation back to search
+### React Testing Library - RTL
 
-## 🧪 Development
+I am a RTL lover and Kent C. Dodds fan.
+Unit testing is not negotiable to me.
 
-```bash
-# Run tests
-pnpm test
+- User centric
+- Accessibility Testing
 
-# Check types
-pnpm typecheck
+### Cypress
 
-# Lint code
-pnpm lint
+I used to cover the main use cases of the app.
 
-# Format code
-pnpm format
-```
+- Real test cases
+- CI / CD integration
 
-## 🤝 Contributing
+### Panda CSS
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run the test suite
-5. Submit a pull request
+I have chosen Panda CSS because it provides:
 
-## 📝 Notes
+- Type-safe styles
+- Zero runtime
+- Great developer experience
+- Built-in design tokens
+- Easy theming
+- Great performance
 
-- The app uses TMDB's free tier API which has rate limiting
-- Image optimization is handled through TMDB's image service
-- Styles are generated at build time using Panda CSS
+## To improve
 
-## 🚧 Todo
+- Add more test coverage
+- Enhance error handling
+- Improve accessibility
+- Enhance responsive design
+- Add animations
 
-1. Improve empty states
-2. Do end 2 end testing
-3. Increase coverage test
-
-## 📄 License
-
-MIT License - feel free to use this project as a template for your own movie search application.
+[Fernando Galende](https://www.linkedin.com/in/fernandogalende/)
+**Senior Frontend Engineer && Senior Design System Designer**
