@@ -1,7 +1,7 @@
-import { cva } from "../../../styled-system/css";
+import { css } from "../../../styled-system/css";
 
-export const buttonStyles = cva({
-  base: {
+export const buttonStyles = {
+  base: css({
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",
@@ -24,29 +24,24 @@ export const buttonStyles = cva({
       opacity: 0.5,
       cursor: "not-allowed",
     },
-  },
+  }),
   variants: {
-    variant: {
-      primary: {
-        backgroundColor: "primary",
-        color: "white",
-      },
-      secondary: {
-        backgroundColor: "secondary",
-        color: "white",
-      },
-    },
-    size: {
-      sm: {
-        padding: "{spacing.sm} {spacing.sm}",
-      },
-      md: {
-        padding: "{spacing.sm} {spacing.md}",
-      },
-      lg: {
-        padding: "{spacing.md} {spacing.lg}",
-      },
-    },
+    primary: css({
+      backgroundColor: "primary",
+      color: "white",
+    }),
+    secondary: css({
+      backgroundColor: "secondary",
+      color: "white",
+    }),
+    sm: css({
+      padding: "{spacing.sm} {spacing.sm}",
+    }),
+    md: css({
+      padding: "{spacing.sm} {spacing.md}",
+    }),
+    lg: css({
+      padding: "{spacing.md} {spacing.lg}",
+    }),
   },
-  defaultVariants: {},
-});
+};

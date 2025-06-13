@@ -15,13 +15,17 @@ export const Button = ({
   disabled,
   ...props
 }: ButtonProps) => {
-  const buttonClass = buttonStyles({ variant, size });
+  const classes = [
+    buttonStyles.base,
+    buttonStyles.variants[variant],
+    buttonStyles.variants[size],
+    className,
+  ]
+    .filter(Boolean)
+    .join(" ");
 
   return (
-    <button
-      className={`${buttonClass} ${className || ""}`}
-      disabled={disabled}
-      {...props}>
+    <button className={classes} disabled={disabled} {...props}>
       {children}
     </button>
   );
