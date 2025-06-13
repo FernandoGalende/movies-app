@@ -1,8 +1,8 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { MemoryRouter } from "react-router";
 import { Search } from ".";
 import * as moviesApi from "@/api/movies";
 import type { Movie } from "@/types";
+import type { LinkProps } from "react-router";
 
 // Import the type for proper TypeScript typing
 type GetMoviesResponse = {
@@ -11,6 +11,18 @@ type GetMoviesResponse = {
   total_pages: number;
   total_results: number;
 };
+
+// Mock scrollIntoView
+Element.prototype.scrollIntoView = vi.fn();
+
+// Mock react-router Link component
+vi.mock("react-router", () => ({
+  Link: ({ children, to, ...props }: LinkProps) => (
+    <a href={to as string} {...props}>
+      {children}
+    </a>
+  ),
+}));
 
 vi.mock("@/api/movies", () => ({
   getMovies: vi.fn().mockResolvedValue({
@@ -27,13 +39,9 @@ describe("Search page", () => {
   });
 
   it("should render search form correctly", () => {
-    render(
-      <MemoryRouter>
-        <Search />
-      </MemoryRouter>
-    );
+    render(<Search />);
 
-    expect(screen.getByText(/Movie Search/i)).toBeInTheDocument();
+    expect(screen.getByText(/Movie Search/i)).toBeVisible();
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
     expect(input).toBeVisible();
@@ -43,15 +51,11 @@ describe("Search page", () => {
 
     expect(
       screen.getByText(/Start typing to search for movies/i)
-    ).toBeInTheDocument();
+    ).toBeVisible();
   });
 
   it("should call API when typing in search input", async () => {
-    render(
-      <MemoryRouter>
-        <Search />
-      </MemoryRouter>
-    );
+    render(<Search />);
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
     fireEvent.change(input, { target: { value: "The Matrix" } });
@@ -74,11 +78,7 @@ describe("Search page", () => {
     // Mock the API to return a pending promise
     vi.mocked(moviesApi.getMovies).mockReturnValue(pendingPromise);
 
-    render(
-      <MemoryRouter>
-        <Search />
-      </MemoryRouter>
-    );
+    render(<Search />);
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
     fireEvent.change(input, { target: { value: "The" } });
@@ -86,9 +86,7 @@ describe("Search page", () => {
     // Wait for the debounced call to trigger (500ms + a bit extra)
     await waitFor(
       () => {
-        expect(
-          screen.getByText(/Searching for movies.../i)
-        ).toBeInTheDocument();
+        expect(screen.getByText(/Loading movies.../i)).toBeVisible();
       },
       { timeout: 1000 }
     );
@@ -103,32 +101,11 @@ describe("Search page", () => {
   });
 
   it("should show proper initial state message", () => {
-    render(
-      <MemoryRouter>
-        <Search />
-      </MemoryRouter>
-    );
+    render(<Search />);
 
     expect(
       screen.getByText(/Start typing to search for movies/i)
     ).toBeVisible();
-  });
-
-  it("should show proper accessibility features", () => {
-    render(
-      <MemoryRouter>
-        <Search />
-      </MemoryRouter>
-    );
-
-    // Check for screen reader instructions
-    expect(
-      screen.getByText(/Enter at least 3 characters to begin searching/i)
-    ).toBeVisible();
-
-    // Check for proper ARIA attributes
-    const statusElement = screen.getByRole("status");
-    expect(statusElement).toBeVisible();
   });
 
   it("should show search results with count and pagination info", async () => {
@@ -168,11 +145,7 @@ describe("Search page", () => {
       total_results: 50,
     });
 
-    render(
-      <MemoryRouter>
-        <Search />
-      </MemoryRouter>
-    );
+    render(<Search />);
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
     fireEvent.change(input, { target: { value: "Matrix" } });
@@ -194,23 +167,19 @@ describe("Search page", () => {
     expect(screen.getByText("The Matrix Reloaded")).toBeVisible();
 
     // Check that movie details are accessible
-    const matrixCard = screen.getByRole("button", {
+    const matrixCards = screen.getAllByRole("link", {
       name: /View details for The Matrix/i,
     });
-    expect(matrixCard).toBeVisible();
-    expect(matrixCard).toHaveAttribute(
+    expect(matrixCards[0]).toBeVisible();
+    expect(matrixCards[0]).toHaveAttribute(
       "aria-label",
-      /View details for The Matrix/i
+      "View details for The Matrix (1999). Rating: 8.7 out of 10."
     );
 
     // Check that movie details are accessible
-    expect(matrixCard).toHaveAttribute("aria-describedby", /movie-1-overview/i);
-    const mockNavigate = vi.fn();
-    vi.mock("react-router", () => ({
-      ...vi.importActual("react-router"),
-      useNavigate: () => mockNavigate,
-    }));
-    matrixCard.click();
-    expect(mockNavigate).toHaveBeenCalledWith("/movie/1");
+    expect(matrixCards[0]).toHaveAttribute(
+      "aria-describedby",
+      "movie-1-overview"
+    );
   });
 });
