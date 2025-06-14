@@ -26,7 +26,7 @@ export function SearchResults({
   loading,
   children,
 }: SearchResultsProps) {
-  if (query === "" || query.length < 3) {
+  if (query === "" && !loading) {
     return <PromptState />;
   }
 
