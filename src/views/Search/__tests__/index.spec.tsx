@@ -38,7 +38,7 @@ describe("Search page", () => {
     vi.clearAllMocks();
   });
 
-  it("should render search form correctly", () => {
+  test("should render search form correctly", () => {
     render(<Search />);
 
     expect(screen.getByText(/Movie Search/i)).toBeVisible();
@@ -54,7 +54,7 @@ describe("Search page", () => {
     ).toBeVisible();
   });
 
-  it("should call API when typing in search input", async () => {
+  test("should call API when typing in search input", async () => {
     render(<Search />);
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
@@ -68,7 +68,7 @@ describe("Search page", () => {
     });
   });
 
-  it("should render loading state when typing in search input 3 characters", async () => {
+  test("should render loading state when typing in search input 3 characters", async () => {
     // Create a promise that doesn't resolve immediately to simulate loading
     let resolvePromise: (value: GetMoviesResponse) => void;
     const pendingPromise = new Promise<GetMoviesResponse>((resolve) => {
@@ -100,7 +100,7 @@ describe("Search page", () => {
     });
   });
 
-  it("should show proper initial state message", () => {
+  test("should show proper initial state message", () => {
     render(<Search />);
 
     expect(
@@ -108,7 +108,7 @@ describe("Search page", () => {
     ).toBeVisible();
   });
 
-  it("should show search results with count and pagination info", async () => {
+  test("should show search results with count and pagination info", async () => {
     // Mock API to return some movie results
     vi.mocked(moviesApi.getMovies).mockResolvedValue({
       page: "1",
