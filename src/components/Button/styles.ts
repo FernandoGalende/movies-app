@@ -34,6 +34,10 @@ export const buttonStyles = {
       backgroundColor: "secondary",
       color: "white",
     }),
+    error: css({
+      backgroundColor: "error",
+      color: "white",
+    }),
     sm: css({
       padding: "{spacing.sm} {spacing.sm}",
     }),

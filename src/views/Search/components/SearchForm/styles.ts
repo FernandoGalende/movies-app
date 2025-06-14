@@ -8,4 +8,8 @@ export const styles = {
     alignItems: "center",
     gap: "{spacing.sm}",
   }),
+  searchInputWrapper: css({
+    width: "100%",
+    maxWidth: "600px",
+  }),
 };
