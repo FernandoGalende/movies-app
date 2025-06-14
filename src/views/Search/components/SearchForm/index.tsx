@@ -10,17 +10,19 @@ export function SearchForm({ query, onQueryChange }: SearchFormProps) {
   return (
     <form role="search" onSubmit={(e) => e.preventDefault()}>
       <div className={styles.searchContainer}>
-        <Input
-          query={query}
-          onChange={(e) => onQueryChange(e.target.value)}
-          label="Search movies"
-          id="movie-search"
-          placeholder="Type to search movies..."
-          ariaDescribedby="search-description"
-          autoComplete="off"
-          type="search"
-          hideLabel={true}
-        />
+        <div className={styles.searchInputWrapper}>
+          <Input
+            query={query}
+            onChange={(e) => onQueryChange(e.target.value)}
+            label="Search movies"
+            id="movie-search"
+            placeholder="Type to search movies..."
+            ariaDescribedby="search-description"
+            autoComplete="off"
+            type="search"
+            hideLabel={true}
+          />
+        </div>
         <p id="search-description" className="sr-only">
           Start typing to search.
         </p>

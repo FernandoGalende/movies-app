@@ -1,5 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { Search } from ".";
+import { Search } from "..";
 import * as moviesApi from "@/api/movies";
 import type { Movie } from "@/types";
 import type { LinkProps } from "react-router";

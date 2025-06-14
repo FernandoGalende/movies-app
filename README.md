@@ -141,7 +141,6 @@ I have chosen Panda CSS because it provides:
 ## To improve
 
 - Add more test coverage
-- Enhance error handling
 - Improve accessibility
 - Enhance responsive design
 - Add animations
