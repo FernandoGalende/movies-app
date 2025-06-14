@@ -13,10 +13,10 @@ export const buttonStyles = {
     textDecoration: "none",
     textStyle: "body",
     padding: "{spacing.sm} {spacing.md}",
-    minHeight: "10",
+    minHeight: "{spacing.md}",
     backgroundColor: "primary",
     color: "white",
-    minWidth: "10",
+    minWidth: "{spacing.md}",
     _hover: {
       backgroundColor: "primaryHover",
     },

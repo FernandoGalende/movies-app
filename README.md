@@ -140,7 +140,16 @@ I have chosen Panda CSS because it provides:
 
 ## To improve
 
-- Add more test coverage
+- Explain panda-css
+- Explain cypress run /
+- Explain accesibility
+- UX UI fixes and minor styles
+  - max with detail
+  - Button paginator
+- Keep searched results while navigation, context?
+- Image fallback
+- Add more unit/integration test coverage
+- Improve pipeline performance using cache
 - Improve accessibility
 - Enhance responsive design
 - Add animations
