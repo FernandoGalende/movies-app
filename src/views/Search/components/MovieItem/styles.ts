@@ -6,7 +6,7 @@ export const styles = {
   }),
 
   movieCard: css({
-    backgroundColor: "white",
+    backgroundColor: "background",
     borderRadius: "{radii.lg}",
     overflow: "hidden",
     boxShadow: "0 {borderWidths.sm} {spacing.md} rgba(0, 0, 0, 0.1)",
@@ -65,7 +65,7 @@ export const styles = {
   }),
 
   ratingValue: css({
-    color: "white",
+    color: "contrastText",
     textStyle: "bodyBold",
   }),
 

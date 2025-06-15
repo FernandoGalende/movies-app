@@ -143,6 +143,9 @@ I have chosen Panda CSS because it provides:
 - Explain panda-css
 - Explain cypress run /
 - Explain accesibility
+  - rem
+  - aria
+  - role
 - UX UI fixes and minor styles
   - max with detail
   - Button paginator

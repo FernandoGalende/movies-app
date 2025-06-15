@@ -9,7 +9,7 @@ export interface PaginatorProps {
   className?: string;
 }
 
-const MAX_BUTTONS = 4;
+const MAX_BUTTONS = 5;
 
 export function Paginator({
   current,
@@ -30,7 +30,7 @@ export function Paginator({
   const renderButtons = () => {
     const buttons = [];
     let start = Math.max(1, current - 2);
-    const end = Math.min(total, start + MAX_BUTTONS);
+    const end = Math.min(total, start + MAX_BUTTONS - 1);
 
     // If we're near the end, adjust start to show 5 buttons
     if (end === total) {
@@ -67,7 +67,7 @@ export function Paginator({
           disabled={current === 1}
           size="sm"
           aria-label={`Go to previous page, current page is ${current}`}>
-          <span aria-hidden="true">‹</span>
+          <span aria-hidden="true">‹‹&nbsp;</span>
           <span>Prev</span>
         </Button>
 
@@ -83,12 +83,12 @@ export function Paginator({
           disabled={current === total}
           size="sm"
           aria-label={`Go to next page, current page is ${current}`}>
-          <span>Next</span>
-          <span aria-hidden="true">›</span>
+          <span>Next&nbsp;</span>
+          <span aria-hidden="true">››</span>
         </Button>
       </div>
 
-      {/* Screen reader only pagination status */}
+      {/* Screen reader only, this is a pagination status */}
       <div className="sr-only">
         Page {current} of {total}
       </div>

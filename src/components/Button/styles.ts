@@ -12,10 +12,10 @@ export const buttonStyles = {
     transition: "all 0.2s",
     textDecoration: "none",
     textStyle: "body",
-    padding: "{spacing.sm} {spacing.md}",
+    padding: "{spacing.sm} {spacing.lg}",
     minHeight: "{spacing.md}",
     backgroundColor: "primary",
-    color: "white",
+    color: "contrastText",
     minWidth: "{spacing.md}",
     _hover: {
       backgroundColor: "primaryHover",
@@ -28,15 +28,15 @@ export const buttonStyles = {
   variants: {
     primary: css({
       backgroundColor: "primary",
-      color: "white",
+      color: "contrastText",
     }),
     secondary: css({
       backgroundColor: "secondary",
-      color: "white",
+      color: "contrastText",
     }),
     error: css({
       backgroundColor: "error",
-      color: "white",
+      color: "contrastText",
     }),
     sm: css({
       padding: "{spacing.sm} {spacing.sm}",
