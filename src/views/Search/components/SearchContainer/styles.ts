@@ -8,7 +8,7 @@ export const styles = {
   }),
   header: css({
     padding: "{spacing.md}",
-    backgroundColor: "white",
+    backgroundColor: "background",
     borderBottom: "{borderWidths.sm} solid",
     borderColor: "border",
   }),

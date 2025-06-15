@@ -99,7 +99,7 @@ export default defineConfig({
           backgroundError: { value: "#f8d7da" },
           text: { value: "#212529" },
           border: { value: "#dee2e6" },
-          white: { value: "#ffffff" },
+          contrastText: { value: "#f2f2f2" },
           gradients: {
             primary: {
               value:

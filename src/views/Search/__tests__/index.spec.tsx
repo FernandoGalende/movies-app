@@ -41,14 +41,17 @@ describe("Search page", () => {
   test("should render search form correctly", () => {
     render(<Search />);
 
+    // Check if the search form is rendered
     expect(screen.getByText(/Movie Search/i)).toBeVisible();
 
+    // Check if the search input is rendered
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
     expect(input).toBeVisible();
     expect(input).toHaveAttribute("type", "search");
     expect(input).toHaveAttribute("id", "movie-search");
     expect(input).toHaveAttribute("aria-describedby", "search-description");
 
+    // Check if the prompt state is rendered
     expect(
       screen.getByText(/Start typing to search for movies/i)
     ).toBeVisible();
@@ -57,9 +60,11 @@ describe("Search page", () => {
   test("should call API when typing in search input", async () => {
     render(<Search />);
 
+    // Check if the search input is rendered
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
     fireEvent.change(input, { target: { value: "The Matrix" } });
 
+    // Check if the API is called with the correct parameters
     await waitFor(() => {
       expect(moviesApi.getMovies).toHaveBeenCalledWith({
         query: "The Matrix",

@@ -14,7 +14,7 @@ export const styles = {
     zIndex: 1000,
   }),
   content: css({
-    backgroundColor: "white",
+    backgroundColor: "background",
     padding: "{spacing.xl}",
     borderRadius: "{radii.lg}",
     textAlign: "center",
