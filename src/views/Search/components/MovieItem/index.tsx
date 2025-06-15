@@ -2,12 +2,17 @@ import type { Movie } from "@/types";
 import { styles } from "./styles";
 import { Link } from "react-router";
 import { MOVIE_DETAIL } from "@/router/paths";
+import { useState } from "react";
+import imageFallback from "@/assets/fallback.jpg";
+import { Image } from "@/components";
 
 interface MovieItemProps {
   movie: Movie;
 }
 
 export function MovieItem({ movie }: MovieItemProps) {
+  const movieImage = `https://image.tmdb.org/t/p/w500${movie.poster_path}`;
+  const [src, setSrc] = useState<string>(movieImage);
   const path = MOVIE_DETAIL.replace(":id", movie.id.toString());
 
   const year = movie.release_date
@@ -27,11 +32,12 @@ export function MovieItem({ movie }: MovieItemProps) {
         aria-describedby={`movie-${movie.id}-overview`}>
         <div className={styles.posterContainer}>
           {movie.poster_path ? (
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+            <Image
+              src={src}
               alt={imageAlt}
               className={styles.poster}
               loading="lazy"
+              onError={() => setSrc(imageFallback)}
             />
           ) : (
             <div

@@ -12,7 +12,7 @@ export const buttonStyles = {
     transition: "all 0.2s",
     textDecoration: "none",
     textStyle: "body",
-    padding: "{spacing.sm} {spacing.lg}",
+    padding: "{spacing.sm} {spacing.md}",
     minHeight: "{spacing.md}",
     color: "contrastText",
     minWidth: "{spacing.md}",
@@ -36,6 +36,8 @@ export const buttonStyles = {
       color: "primary",
       _hover: {
         color: "contrastText",
+        backgroundColor: "primaryHover",
+        borderColor: "primaryHover",
       },
     }),
     error: css({

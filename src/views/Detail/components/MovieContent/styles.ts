@@ -2,8 +2,9 @@ import { css } from "../../../../../styled-system/css";
 
 export const styles = {
   imageContainer: css({
-    width: "100%",
-    maxWidth: "500px",
+    width: "300px",
+    height: "auto",
+    maxWidth: "100%",
     margin: "0 auto",
     "& img": {
       width: "100%",

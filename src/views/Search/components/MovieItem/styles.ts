@@ -83,6 +83,7 @@ export const styles = {
     overflow: "hidden",
     textOverflow: "ellipsis",
     maxHeight: "{sizes.md}",
+    whiteSpace: "nowrap",
   }),
 
   year: css({
