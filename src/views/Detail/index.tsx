@@ -13,6 +13,7 @@ export function Detail() {
 
   const navigation = (
     <Button
+      variant="ghost"
       onClick={handleBack}
       aria-label="Return to movie search"
       data-testid="back-to-search">

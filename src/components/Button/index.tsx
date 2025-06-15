@@ -3,7 +3,7 @@ import { buttonStyles } from "./styles";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
-  variant?: "primary" | "secondary" | "error";
+  variant?: "primary" | "ghost" | "error";
   size?: "sm" | "md" | "lg";
 }
 

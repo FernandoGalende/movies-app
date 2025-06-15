@@ -14,7 +14,6 @@ export const buttonStyles = {
     textStyle: "body",
     padding: "{spacing.sm} {spacing.lg}",
     minHeight: "{spacing.md}",
-    backgroundColor: "primary",
     color: "contrastText",
     minWidth: "{spacing.md}",
     _hover: {
@@ -30,9 +29,14 @@ export const buttonStyles = {
       backgroundColor: "primary",
       color: "contrastText",
     }),
-    secondary: css({
-      backgroundColor: "secondary",
-      color: "contrastText",
+    ghost: css({
+      borderColor: "primary",
+      border: "none",
+      backgroundColor: "transparent",
+      color: "primary",
+      _hover: {
+        color: "contrastText",
+      },
     }),
     error: css({
       backgroundColor: "error",
