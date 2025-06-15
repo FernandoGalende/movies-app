@@ -97,7 +97,7 @@ export default defineConfig({
           error: { value: "#dc3545" },
           background: { value: "#f8f9fa" },
           backgroundError: { value: "#f8d7da" },
-          text: { value: "#212529" },
+          text: { value: "#000000" },
           border: { value: "#dee2e6" },
           contrastText: { value: "#f2f2f2" },
           gradients: {
