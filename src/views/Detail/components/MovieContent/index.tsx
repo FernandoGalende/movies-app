@@ -1,5 +1,6 @@
 import type { Movie } from "@/types";
 import { styles } from "./styles";
+import { Image } from "@/components";
 
 export type MovieContentProps = {
   movie: Movie;
@@ -8,8 +9,8 @@ export type MovieContentProps = {
 export const MovieContent = ({ movie }: MovieContentProps) => (
   <article data-testid="movie-detail" aria-labelledby="movie-title">
     <div className={styles.imageContainer}>
-      <img
-        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+      <Image
+        src={`https://image.tmdb.org/t/p/w500${movie.poster_path}asdfasdfafdadasw`}
         alt={`Movie poster for ${movie.title}`}
         loading="lazy" // lazy loading is used to improve the performance of the page only load the image when it is visible
       />

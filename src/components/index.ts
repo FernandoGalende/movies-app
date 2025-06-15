@@ -1,3 +1,4 @@
-export { Paginator, type PaginatorProps } from "./Paginator/index.tsx";
-export { Input, type InputProps } from "./Input/index.tsx";
-export { Button, type ButtonProps } from "./Button/index.tsx";
+export { Paginator, type PaginatorProps } from "./Paginator/";
+export { Input, type InputProps } from "./Input";
+export { Button, type ButtonProps } from "./Button/";
+export { Image, type ImageProps } from "./Image/";
