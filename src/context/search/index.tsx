@@ -1,9 +1,13 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { useDebounce } from "react-use";
 import { getMovies } from "@/api/movies";
 import type { Movie } from "@/types";
 
-interface UseSearchReturn {
+interface SearchProviderProps {
+  children: React.ReactNode;
+}
+
+export interface UseSearch {
   query: string;
   setQuery: (query: string) => void;
   movies: Movie[];
@@ -16,7 +20,9 @@ interface UseSearchReturn {
   showPagination: boolean;
 }
 
-export function useSearch(): UseSearchReturn {
+const SearchContext = createContext<UseSearch | null>(null);
+
+export function SearchProvider({ children }: SearchProviderProps) {
   const [query, setQuery] = useState<string>("");
   const [movies, setMovies] = useState<Movie[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -67,7 +73,7 @@ export function useSearch(): UseSearchReturn {
     setTotalPages(1);
   };
 
-  return {
+  const value: UseSearch = {
     query,
     setQuery,
     movies,
@@ -79,4 +85,17 @@ export function useSearch(): UseSearchReturn {
     isEmptySearch,
     showPagination,
   };
+
+  return (
+    <SearchContext.Provider value={value}>{children}</SearchContext.Provider>
+  );
 }
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const useSearch = () => {
+  const context = useContext(SearchContext);
+  if (!context) {
+    throw new Error("useSearch must be used within a SearchProvider");
+  }
+  return context;
+};

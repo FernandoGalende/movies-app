@@ -9,6 +9,7 @@ import { Search } from "..";
 import * as moviesApi from "@/api/movies";
 import type { Movie } from "@/types";
 import type { LinkProps } from "react-router";
+import { SearchProvider } from "../../../context";
 
 // Import the type for proper TypeScript typing
 type GetMoviesResponse = {
@@ -45,6 +46,12 @@ vi.mock("@/api/movies", () => ({
   }),
 }));
 
+const renderWithProviders = (ui: React.ReactNode) => {
+  return render(ui, {
+    wrapper: ({ children }) => <SearchProvider>{children}</SearchProvider>,
+  });
+};
+
 describe("Search page", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -52,7 +59,7 @@ describe("Search page", () => {
 
   test("should render search form correctly", async () => {
     await act(async () => {
-      render(<Search />);
+      renderWithProviders(<Search />);
     });
 
     expect(screen.getByText(/Movie Search/i)).toBeVisible();
@@ -64,7 +71,7 @@ describe("Search page", () => {
 
   test("should call API when typing in search input", async () => {
     await act(async () => {
-      render(<Search />);
+      renderWithProviders(<Search />);
     });
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
@@ -96,7 +103,7 @@ describe("Search page", () => {
     vi.mocked(moviesApi.getMovies).mockReturnValue(delayedPromise);
 
     await act(async () => {
-      render(<Search />);
+      renderWithProviders(<Search />);
     });
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
@@ -115,7 +122,7 @@ describe("Search page", () => {
 
   test("should show proper initial state message", async () => {
     await act(async () => {
-      render(<Search />);
+      renderWithProviders(<Search />);
     });
 
     expect(screen.getByText(/Favorites movies/i)).toBeVisible();
@@ -160,7 +167,7 @@ describe("Search page", () => {
     vi.mocked(moviesApi.getMovies).mockResolvedValue(mockResults);
 
     await act(async () => {
-      render(<Search />);
+      renderWithProviders(<Search />);
     });
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);

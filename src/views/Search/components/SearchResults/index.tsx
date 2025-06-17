@@ -1,11 +1,12 @@
-import { List } from "../List";
 import type { Movie } from "@/types";
-import { styles } from "./styles";
 
+import { List } from "../List";
 import { PromptState } from "../PromptState";
 import { NoResultsState } from "../NoResultsState";
 import { ResultsHeader } from "../ResultsHeader";
 import { LoadingState } from "../LoadingState";
+
+import { styles } from "./styles";
 
 interface SearchResultsProps {
   movies: Movie[];
