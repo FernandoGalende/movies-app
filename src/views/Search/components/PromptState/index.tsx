@@ -3,12 +3,16 @@ import { styles } from "./styles";
 import { getFavMovies } from "@/api/movies";
 import type { Movie } from "@/types";
 import { MovieItem } from "../MovieItem";
+import { useKeyboardNavigation } from "@/hooks";
 
 export function PromptState() {
   const [favMovies, setFavMovies] = useState<Movie[]>([]);
+
+  const { itemRefs } = useKeyboardNavigation<HTMLAnchorElement>(favMovies);
+
   useEffect(() => {
     getFavMovies().then((data) => {
-      setFavMovies(data.results);
+      setFavMovies(data.results.slice(0, 4));
     });
   }, []);
 
@@ -16,8 +20,14 @@ export function PromptState() {
     <div data-testid="prompt-state" className={styles.statusMessage}>
       <span>Favorites movies</span>
       <div className={styles.favMovies}>
-        {favMovies.slice(0, 4).map((movie) => (
-          <MovieItem key={movie.id} movie={movie}></MovieItem>
+        {favMovies.map((movie, index) => (
+          <MovieItem
+            key={movie.id}
+            movie={movie}
+            ref={(el) => {
+              itemRefs.current[index] = el;
+            }}
+          />
         ))}
       </div>
     </div>
