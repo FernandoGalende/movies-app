@@ -44,14 +44,11 @@ export const buttonStyles = {
       backgroundColor: "error",
       color: "contrastText",
     }),
-    sm: css({
-      padding: "{spacing.sm} {spacing.sm}",
-    }),
     md: css({
-      padding: "{spacing.sm} {spacing.md}",
+      padding: "{spacing.sm} {spacing.lg}",
     }),
     lg: css({
-      padding: "{spacing.md} {spacing.lg}",
+      padding: "{spacing.lg} {spacing.xl}",
     }),
   },
 };

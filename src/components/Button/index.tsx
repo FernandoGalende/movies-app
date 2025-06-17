@@ -4,7 +4,7 @@ import { buttonStyles } from "./styles";
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   variant?: "primary" | "ghost" | "error";
-  size?: "sm" | "md" | "lg";
+  size?: "md" | "lg";
 }
 
 export const Button = ({
