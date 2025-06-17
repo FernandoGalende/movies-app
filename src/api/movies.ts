@@ -57,3 +57,27 @@ export const getMovie = async (id: string): Promise<Movie> => {
 
   return data;
 };
+
+interface GetFavMoviesResponse {
+  page: string;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
+
+// cache for fav movie details to avoid multiple requests
+const cacheFavMovies = new Map<string, GetFavMoviesResponse>();
+
+export const getFavMovies = async (): Promise<GetFavMoviesResponse> => {
+  const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`;
+
+  const cacheKey = `${url}`;
+  if (cacheFavMovies.has(cacheKey)) {
+    return cacheFavMovies.get(cacheKey)!;
+  }
+
+  const data = await fetcher(url);
+  cacheMovie.set(cacheKey, data);
+
+  return data;
+};

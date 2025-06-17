@@ -8,5 +8,6 @@ export const styles = {
     display: "flex",
     alignItems: "baseline",
     flexDirection: "column",
+    height: "100vh",
   }),
 };

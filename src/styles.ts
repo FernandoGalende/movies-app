@@ -2,7 +2,7 @@ import { css } from "../styled-system/css";
 
 export const styles = {
   root: css({
-    maxWidth: "1280px",
+    maxWidth: "{breakpoints.2xl}",
     margin: "0 auto",
   }),
 };

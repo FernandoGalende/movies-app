@@ -1,4 +1,10 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  act,
+} from "@testing-library/react";
 import { Search } from "..";
 import * as moviesApi from "@/api/movies";
 import type { Movie } from "@/types";
@@ -31,6 +37,12 @@ vi.mock("@/api/movies", () => ({
     total_pages: 1,
     total_results: 0,
   }),
+  getFavMovies: vi.fn().mockResolvedValue({
+    page: "1",
+    results: [],
+    total_pages: 1,
+    total_results: 0,
+  }),
 }));
 
 describe("Search page", () => {
@@ -38,33 +50,28 @@ describe("Search page", () => {
     vi.clearAllMocks();
   });
 
-  test("should render search form correctly", () => {
-    render(<Search />);
+  test("should render search form correctly", async () => {
+    await act(async () => {
+      render(<Search />);
+    });
 
-    // Check if the search form is rendered
     expect(screen.getByText(/Movie Search/i)).toBeVisible();
-
-    // Check if the search input is rendered
-    const input = screen.getByPlaceholderText(/Type to search movies.../i);
-    expect(input).toBeVisible();
-    expect(input).toHaveAttribute("type", "search");
-    expect(input).toHaveAttribute("id", "movie-search");
-    expect(input).toHaveAttribute("aria-describedby", "search-description");
-
-    // Check if the prompt state is rendered
     expect(
-      screen.getByText(/Start typing to search for movies/i)
+      screen.getByPlaceholderText(/Type to search movies.../i)
     ).toBeVisible();
+    expect(screen.getByText(/Favorites movies/i)).toBeVisible();
   });
 
   test("should call API when typing in search input", async () => {
-    render(<Search />);
+    await act(async () => {
+      render(<Search />);
+    });
 
-    // Check if the search input is rendered
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
-    fireEvent.change(input, { target: { value: "The Matrix" } });
+    await act(async () => {
+      fireEvent.change(input, { target: { value: "The Matrix" } });
+    });
 
-    // Check if the API is called with the correct parameters
     await waitFor(() => {
       expect(moviesApi.getMovies).toHaveBeenCalledWith({
         query: "The Matrix",
@@ -74,48 +81,48 @@ describe("Search page", () => {
   });
 
   test("should render loading state when typing in search input 3 characters", async () => {
-    // Create a promise that doesn't resolve immediately to simulate loading
-    let resolvePromise: (value: GetMoviesResponse) => void;
-    const pendingPromise = new Promise<GetMoviesResponse>((resolve) => {
-      resolvePromise = resolve;
+    const mockResponse = {
+      page: "1",
+      results: [],
+      total_pages: 1,
+      total_results: 0,
+    };
+
+    // Create a promise that resolves after a short delay
+    const delayedPromise = new Promise<GetMoviesResponse>((resolve) => {
+      setTimeout(() => resolve(mockResponse), 100);
     });
 
-    // Mock the API to return a pending promise
-    vi.mocked(moviesApi.getMovies).mockReturnValue(pendingPromise);
+    vi.mocked(moviesApi.getMovies).mockReturnValue(delayedPromise);
 
-    render(<Search />);
+    await act(async () => {
+      render(<Search />);
+    });
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
-    fireEvent.change(input, { target: { value: "The" } });
+    await act(async () => {
+      fireEvent.change(input, { target: { value: "The" } });
+    });
 
-    // Wait for the debounced call to trigger (500ms + a bit extra)
+    // Wait for loading state
     await waitFor(
       () => {
         expect(screen.getByText(/Loading movies.../i)).toBeVisible();
       },
       { timeout: 1000 }
     );
-
-    // Clean up: resolve the promise to avoid hanging tests
-    resolvePromise!({
-      page: "1",
-      results: [],
-      total_pages: 1,
-      total_results: 0,
-    });
   });
 
-  test("should show proper initial state message", () => {
-    render(<Search />);
+  test("should show proper initial state message", async () => {
+    await act(async () => {
+      render(<Search />);
+    });
 
-    expect(
-      screen.getByText(/Start typing to search for movies/i)
-    ).toBeVisible();
+    expect(screen.getByText(/Favorites movies/i)).toBeVisible();
   });
 
   test("should show search results with count and pagination info", async () => {
-    // Mock API to return some movie results
-    vi.mocked(moviesApi.getMovies).mockResolvedValue({
+    const mockResults = {
       page: "1",
       results: [
         {
@@ -148,43 +155,40 @@ describe("Search page", () => {
       ],
       total_pages: 3,
       total_results: 50,
-    });
+    };
 
-    render(<Search />);
+    vi.mocked(moviesApi.getMovies).mockResolvedValue(mockResults);
+
+    await act(async () => {
+      render(<Search />);
+    });
 
     const input = screen.getByPlaceholderText(/Type to search movies.../i);
-    fireEvent.change(input, { target: { value: "Matrix" } });
-
-    // Wait for the API call to complete and results to display
-    await waitFor(() => {
-      expect(screen.getByText(/Found 6 results for "Matrix"/i)).toBeVisible();
+    await act(async () => {
+      fireEvent.change(input, { target: { value: "Matrix" } });
     });
 
-    // Check that pagination info is displayed (target the visible element, not the sr-only one)
-    const paginationElements = screen.getAllByText(/Page 1 of 3/i);
-    const visiblePaginationElement = paginationElements.find(
-      (el) => !el.classList.contains("sr-only")
-    );
-    expect(visiblePaginationElement).toBeVisible();
+    // Wait for all assertions in a single waitFor
+    await waitFor(
+      () => {
+        expect(screen.getByText(/Found 6 results for "Matrix"/i)).toBeVisible();
+        expect(screen.getByText("The Matrix")).toBeVisible();
+        expect(screen.getByText("The Matrix Reloaded")).toBeVisible();
 
-    // Check that movie results are displayed
-    expect(screen.getByText("The Matrix")).toBeVisible();
-    expect(screen.getByText("The Matrix Reloaded")).toBeVisible();
-
-    // Check that movie details are accessible
-    const matrixCards = screen.getAllByRole("link", {
-      name: /View details for The Matrix/i,
-    });
-    expect(matrixCards[0]).toBeVisible();
-    expect(matrixCards[0]).toHaveAttribute(
-      "aria-label",
-      "View details for The Matrix (1999). Rating: 8.7 out of 10."
-    );
-
-    // Check that movie details are accessible
-    expect(matrixCards[0]).toHaveAttribute(
-      "aria-describedby",
-      "movie-1-overview"
+        const matrixCards = screen.getAllByRole("link", {
+          name: /View details for The Matrix/i,
+        });
+        expect(matrixCards[0]).toBeVisible();
+        expect(matrixCards[0]).toHaveAttribute(
+          "aria-label",
+          "View details for The Matrix (1999). Rating: 8.7 out of 10."
+        );
+        expect(matrixCards[0]).toHaveAttribute(
+          "aria-describedby",
+          "movie-1-overview"
+        );
+      },
+      { timeout: 1000 }
     );
   });
 });

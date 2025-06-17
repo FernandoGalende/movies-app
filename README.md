@@ -147,7 +147,6 @@ I have chosen Panda CSS because it provides:
   - aria-labels
   - role
 - Keep searched results while navigation, context?
-- Add more unit/integration test coverage
 - Improve pipeline performance using cache
 - Improve accessibility
 - Enhance responsive design
