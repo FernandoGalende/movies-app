@@ -8,7 +8,26 @@ This is a Single Page Application created with Vite using a React TypeScript tem
 
 ## Instructions
 
-The website features a search functionality where users can look up movies. The search is triggered after typing at least 3 characters, with a debounce of 500ms to prevent excessive API calls. The api is cached in memory for better performance. Users can view movie details by clicking on a movie card, and navigate back to the search results. The app implements pagination for search results and includes loading / em states for better user experience.
+The application provides a seamless movie search experience with the following features:
+
+- **Search Functionality**:
+
+  - Real-time movie search with 500ms debounce to optimize API calls
+  - In-memory caching for improved performance
+  - Pagination support for search results
+
+- **Navigation**:
+
+  - View detailed movie information by clicking on movie cards
+  - Navigate back to search results
+  - Full keyboard navigation support for accessibility
+  - Intuitive breadcrumb navigation
+
+- **User Experience**:
+  - Loading states for better feedback
+  - Empty state handling
+  - Responsive design for all screen sizes
+  - Smooth transitions between views
 
 ## Getting started locally with pnpm
 
@@ -57,15 +76,14 @@ I have implemented proper error handling for API calls and user interactions, wi
     ├── hooks // custom hooks
     │   └── useSearch
     │
+    │
+    ├── context
+    │   └── search
+    │
     ├── types
     │
     ├── router
     │   └── routes
-    │
-    ├── styles
-    │   └── components
-    │   └── theme
-    │   └── global
     │
     ├── App.tsx
     └── main.tsx
@@ -112,22 +130,24 @@ I like TS because of:
 - Performance
 - Easy config
 
-### React Testing Library - RTL
-
-I am a RTL lover and Kent C. Dodds fan.
-Unit testing is not negotiable to me.
-
-- User centric
-- Accessibility Testing
-
-### Cypress
-
-I used to cover the main use cases of the app.
-
-- Real test cases
-- CI / CD integration
-
 ### Panda CSS
+
+Panda CSS is a modern CSS-in-JS solution that generates utility classes at build time. Unlike traditional CSS-in-JS libraries, it doesn't add runtime overhead because all styles are pre-compiled.
+
+The workflow is simple:
+
+1. You write your styles using Panda's utility classes or custom styles
+2. During development and build, Panda analyzes your code
+3. It generates optimized CSS classes in the `src/styled-system` folder
+4. These generated classes are then used in your application
+
+Panda generates the corresponding CSS classes at build time, ensuring type safety and optimal performance.
+
+You will see this in the DOM:
+
+```tsx
+<div className="flex items-center p-4 bg-gray-100">
+```
 
 I have chosen Panda CSS because it provides:
 
@@ -138,19 +158,42 @@ I have chosen Panda CSS because it provides:
 - Easy theming
 - Great performance
 
-## To improve
+### A11y
 
-- Explain panda-css
-- Explain cypress run /
-- Explain accesibility
-  - rems zoom
-  - aria-labels
-  - role
-- Keep searched results while navigation, context?
-- Improve pipeline performance using cache
-- Improve accessibility
-- Enhance responsive design
-- Add animations
+I have implemented several accessibility features to ensure the app is usable by everyone:
+
+**rem**
+
+- Used relative units (rem) to support browser zoom functionality, allowing users with visual impairments to scale the content according to their needs.
+
+**aria-labels & role**
+
+- Added descriptive ARIA labels and semantic roles to improve screen reader compatibility, making the app more navigable for users relying on assistive technologies.
+
+**keyboard-navigation**
+
+- Implemented comprehensive keyboard navigation support, including focus management and keyboard shortcuts, to ensure the app is fully accessible without a mouse.
+
+### Testing strategy
+
+I follow [The Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) methodology by Kent C. Dodds, which emphasizes a balanced approach to testing:
+
+- **Unit Tests**: Focused on complex business logic and individual component functionality
+- **Integration Tests**: Cover component interactions and data flow
+- **End-to-End Tests**: Limited to critical user flows due to their slower execution time
+
+For end-to-end testing, I've implemented two Cypress configurations:
+
+- Development mode: For local testing and debugging
+- CI/CD pipeline: Optimized for faster execution in the continuous integration environment
+
+### To improve
+
+- App performance
+- Pipeline performance
+- Accessibility
+- Responsive design
+- UI
 
 [Fernando Galende](https://www.linkedin.com/in/fernandogalende/)
 **Senior Frontend Engineer && Senior Design System Designer**

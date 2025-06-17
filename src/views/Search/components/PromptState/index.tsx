@@ -18,7 +18,7 @@ export function PromptState() {
 
   return (
     <div data-testid="prompt-state" className={styles.statusMessage}>
-      <span>Favorites movies</span>
+      <span>Favorite movies</span>
       <div className={styles.favMovies}>
         {favMovies.map((movie, index) => (
           <MovieItem

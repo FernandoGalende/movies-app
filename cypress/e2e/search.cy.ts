@@ -5,10 +5,7 @@ describe("Movie Search", () => {
 
   it("should handle complete search flow", () => {
     // Initial state - prompt
-    cy.get('[data-testid="prompt-state"]').should(
-      "contain",
-      "Favorites movies"
-    );
+    cy.get('[data-testid="prompt-state"]').should("contain", "Favorite movies");
     cy.get('[data-testid="prompt-state"] .favMovies li').should(
       "have.length.at.most",
       4
@@ -33,9 +30,6 @@ describe("Movie Search", () => {
 
     // Clear search and verify empty state
     cy.get('input[type="search"]').clear();
-    cy.get('[data-testid="prompt-state"]').should(
-      "contain",
-      "Favorites movies"
-    );
+    cy.get('[data-testid="prompt-state"]').should("contain", "Favorite movies");
   });
 });
