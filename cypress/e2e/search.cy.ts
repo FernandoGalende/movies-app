@@ -7,7 +7,11 @@ describe("Movie Search", () => {
     // Initial state - prompt
     cy.get('[data-testid="prompt-state"]').should(
       "contain",
-      "Start typing to search for movies"
+      "Favorites movies"
+    );
+    cy.get('[data-testid="prompt-state"] .favMovies li').should(
+      "have.length.at.most",
+      4
     );
 
     // Type search and wait for results
@@ -31,7 +35,7 @@ describe("Movie Search", () => {
     cy.get('input[type="search"]').clear();
     cy.get('[data-testid="prompt-state"]').should(
       "contain",
-      "Start typing to search for movies"
+      "Favorites movies"
     );
   });
 });
