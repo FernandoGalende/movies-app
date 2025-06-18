@@ -8,6 +8,8 @@ This is a Single Page Application created with Vite using a React TypeScript tem
 
 ## Instructions
 
+_Note: In a real production scenario, I would never upload the .env file to the repository. I’ve included it here just for simplicity and demonstration purposes._
+
 The application provides a seamless movie search experience with the following features:
 
 - **Search Functionality**:

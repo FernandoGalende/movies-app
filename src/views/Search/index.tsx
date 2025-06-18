@@ -15,6 +15,7 @@ export function Search() {
     totalPages,
     showPagination,
     loading,
+    debouncingQuery,
   } = useSearch();
 
   const handleOnQueryChange = (query: string) => {
@@ -37,7 +38,8 @@ export function Search() {
         query={query}
         page={page}
         totalPages={totalPages}
-        loading={loading}>
+        loading={loading}
+        debouncingQuery={debouncingQuery}>
         {showPagination && (
           <div className={styles.pagination}>
             <Paginator current={page} total={totalPages} onChange={setPage} />

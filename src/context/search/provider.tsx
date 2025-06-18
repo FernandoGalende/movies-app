@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDebounce } from "react-use";
 import { getMovies } from "@/api/movies";
 import type { Movie } from "@/types";
@@ -19,6 +19,7 @@ export interface UseSearch {
   handleClear: () => void;
   isEmptySearch: boolean;
   showPagination: boolean;
+  debouncingQuery: boolean;
 }
 
 export function SearchProvider({ children }: SearchProviderProps) {
@@ -27,9 +28,14 @@ export function SearchProvider({ children }: SearchProviderProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
+  const [debouncingQuery, setDebouncingQuery] = useState<boolean>(false);
 
   const isEmptySearch = query.length > 0 && !loading && movies.length === 0;
   const showPagination = totalPages > 1 && !loading && movies.length > 0;
+
+  useEffect(() => {
+    setDebouncingQuery(true);
+  }, [query]);
 
   useDebounce(
     () => {
@@ -37,6 +43,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
         setMovies([]);
         setTotalPages(1);
         setLoading(false);
+        setDebouncingQuery(false);
         return;
       }
 
@@ -53,6 +60,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
         })
         .finally(() => {
           setLoading(false);
+          setDebouncingQuery(false);
         });
     },
     500,
@@ -77,6 +85,7 @@ export function SearchProvider({ children }: SearchProviderProps) {
     handleClear,
     isEmptySearch,
     showPagination,
+    debouncingQuery,
   };
 
   return (

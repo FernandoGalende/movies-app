@@ -16,6 +16,7 @@ interface SearchResultsProps {
   totalPages: number;
   children?: React.ReactNode;
   loading: boolean;
+  debouncingQuery: boolean;
 }
 
 export function SearchResults({
@@ -25,9 +26,10 @@ export function SearchResults({
   totalPages,
   query,
   loading,
+  debouncingQuery,
   children,
 }: SearchResultsProps) {
-  if (query === "" && !loading) {
+  if (query === "" && !loading && !debouncingQuery) {
     return <PromptState />;
   }
 
@@ -35,7 +37,7 @@ export function SearchResults({
     return <LoadingState />;
   }
 
-  if (movies.length === 0) {
+  if (movies.length === 0 && !debouncingQuery) {
     return <NoResultsState query={query} />;
   }
 
