@@ -1,6 +1,14 @@
 import { css } from "../../../../../styled-system/css";
 
 export const styles = {
+  root: css({
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "{spacing.lg}",
+    width: "100%",
+  }),
   imageContainer: css({
     width: "300px",
     height: "auto",
@@ -14,7 +22,12 @@ export const styles = {
     },
   }),
   content: css({
+    marginTop: "{spacing.xl}",
     padding: "{spacing.md}",
+    display: "flex",
+    flexDirection: "column",
+    gap: "{spacing.xl}",
+    width: "100%",
     "& h1": {
       textStyle: "heading1",
       marginBottom: "{spacing.md}",

@@ -7,7 +7,10 @@ export type MovieContentProps = {
 };
 
 export const MovieContent = ({ movie }: MovieContentProps) => (
-  <article data-testid="movie-detail" aria-labelledby="movie-title">
+  <article
+    data-testid="movie-detail"
+    aria-labelledby="movie-title"
+    className={styles.root}>
     <div className={styles.imageContainer}>
       <Image
         src={`https://image.tmdb.org/t/p/w500${movie.poster_path}asdfasdfafdadasw`}
@@ -36,7 +39,7 @@ export const MovieContent = ({ movie }: MovieContentProps) => (
             {/* dd is description details */}
             <dd>
               <span aria-label={`${movie.vote_average} out of 10`}>
-                {movie.vote_average}
+                {movie.vote_average.toFixed(1)}
               </span>
               <span className={styles.votes}>({movie.vote_count} votes)</span>
             </dd>
@@ -44,7 +47,7 @@ export const MovieContent = ({ movie }: MovieContentProps) => (
 
           <div>
             <dt>Popularity score</dt>
-            <dd>{movie.popularity}</dd>
+            <dd>{movie.popularity.toFixed(1)}</dd>
           </div>
         </dl>
       </section>

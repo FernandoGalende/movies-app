@@ -10,7 +10,7 @@ interface DetailContainerProps {
 export function DetailContainer({ navigation, content }: DetailContainerProps) {
   return (
     <main className={styles.main}>
-      {navigation}
+      <div className={styles.wrapper}>{navigation}</div>
       {content}
     </main>
   );
