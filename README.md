@@ -21,13 +21,12 @@ The application provides a seamless movie search experience with the following f
   - View detailed movie information by clicking on movie cards
   - Navigate back to search results
   - Full keyboard navigation support for accessibility
-  - Intuitive breadcrumb navigation
 
 - **User Experience**:
   - Loading states for better feedback
-  - Empty state handling
-  - Responsive design for all screen sizes
-  - Smooth transitions between views
+  - Empty state handling with favorite movies
+  - Empty image errors
+  - Global errors page
 
 ## Getting started locally with pnpm
 
@@ -158,7 +157,7 @@ I have chosen Panda CSS because it provides:
 - Easy theming
 - Great performance
 
-### A11y
+## A11y
 
 I have implemented several accessibility features to ensure the app is usable by everyone:
 
@@ -174,7 +173,7 @@ I have implemented several accessibility features to ensure the app is usable by
 
 - Implemented comprehensive keyboard navigation support, including focus management and keyboard shortcuts, to ensure the app is fully accessible without a mouse.
 
-### Testing strategy
+## Testing strategy
 
 I follow [The Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications) methodology by Kent C. Dodds, which emphasizes a balanced approach to testing:
 
@@ -184,10 +183,10 @@ I follow [The Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and
 
 For end-to-end testing, I've implemented two Cypress configurations:
 
-- Development mode: For local testing and debugging
-- CI/CD pipeline: Optimized for faster execution in the continuous integration environment
+- `pnpm run cypress:open` for development mode: For local testing and debugging
+- `pnpm run cypress:run` for CI/CD pipeline: Optimized for faster execution in the continuous integration environment
 
-### To improve
+## To improve
 
 - App performance
 - Pipeline performance
