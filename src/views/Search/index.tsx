@@ -1,7 +1,7 @@
 import { SearchHeader, SearchForm, SearchResults } from "./components";
 import { SearchContainer } from "./components/SearchContainer";
 import { Paginator } from "@/components";
-import { useSearch } from "@/context/search";
+import { useSearch } from "@/context";
 
 import { styles } from "./styles";
 

@@ -1,1 +1,1 @@
-export { SearchProvider, useSearch } from "./search";
+export * from "./search";
