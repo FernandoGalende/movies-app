@@ -12,7 +12,7 @@ describe("useKeyboardNavigation", () => {
 
   it("should handle ArrowRight and ArrowLeft keys", () => {
     const { result } = renderHook(() =>
-      useKeyboardNavigation(mockItems, mockOnSelect)
+      useKeyboardNavigation<HTMLDivElement, string>(mockItems)
     );
 
     // Mock refs

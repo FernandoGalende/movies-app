@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useKeyboardNavigation<T extends HTMLElement>(items: unknown[]) {
+export function useKeyboardNavigation<T extends HTMLElement, U>(items: U[]) {
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const itemRefs = useRef<(T | null)[]>([]);
 

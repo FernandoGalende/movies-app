@@ -8,7 +8,7 @@ interface ListProps {
 }
 
 export function List({ movies }: ListProps) {
-  const { itemRefs } = useKeyboardNavigation<HTMLAnchorElement>(movies);
+  const { itemRefs } = useKeyboardNavigation<HTMLAnchorElement, Movie>(movies);
 
   return (
     <ul

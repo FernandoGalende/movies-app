@@ -8,7 +8,9 @@ import { useKeyboardNavigation } from "@/hooks";
 export function PromptState() {
   const [favMovies, setFavMovies] = useState<Movie[]>([]);
 
-  const { itemRefs } = useKeyboardNavigation<HTMLAnchorElement>(favMovies);
+  const { itemRefs } = useKeyboardNavigation<HTMLAnchorElement, Movie>(
+    favMovies
+  );
 
   useEffect(() => {
     getFavMovies().then((data) => {
