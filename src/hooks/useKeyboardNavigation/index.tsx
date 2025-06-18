@@ -12,7 +12,7 @@ export function useKeyboardNavigation<T extends HTMLElement, U>(items: U[]) {
         case "ArrowRight":
           event.preventDefault();
           setSelectedIndex((prev) => {
-            const nextIndex = prev < items.length - 1 ? prev + 1 : prev;
+            const nextIndex = prev < items.length - 1 ? prev + 1 : 0;
             itemRefs.current[nextIndex]?.focus();
             return nextIndex;
           });
@@ -20,7 +20,7 @@ export function useKeyboardNavigation<T extends HTMLElement, U>(items: U[]) {
         case "ArrowLeft":
           event.preventDefault();
           setSelectedIndex((prev) => {
-            const nextIndex = prev > 0 ? prev - 1 : prev;
+            const nextIndex = prev > 0 ? prev - 1 : items.length - 1;
             itemRefs.current[nextIndex]?.focus();
             return nextIndex;
           });

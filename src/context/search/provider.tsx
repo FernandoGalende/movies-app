@@ -34,7 +34,9 @@ export function SearchProvider({ children }: SearchProviderProps) {
   const showPagination = totalPages > 1 && !loading && movies.length > 0;
 
   useEffect(() => {
-    setDebouncingQuery(true);
+    if (query.length > 0) {
+      setDebouncingQuery(true);
+    }
   }, [query]);
 
   useDebounce(

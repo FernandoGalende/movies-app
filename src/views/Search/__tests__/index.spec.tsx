@@ -7,17 +7,8 @@ import {
 } from "@testing-library/react";
 import { Search } from "..";
 import * as moviesApi from "@/api/movies";
-import type { Movie } from "@/types";
 import type { LinkProps } from "react-router";
 import { SearchProvider } from "../../../context";
-
-// Import the type for proper TypeScript typing
-type GetMoviesResponse = {
-  page: string;
-  results: Movie[];
-  total_pages: number;
-  total_results: number;
-};
 
 // Mock scrollIntoView
 Element.prototype.scrollIntoView = vi.fn();
@@ -88,19 +79,12 @@ describe("Search page", () => {
   });
 
   test("should render loading state when typing in search input 3 characters", async () => {
-    const mockResponse = {
-      page: "1",
-      results: [],
-      total_pages: 1,
-      total_results: 0,
-    };
-
-    // Create a promise that resolves after a short delay
-    const delayedPromise = new Promise<GetMoviesResponse>((resolve) => {
-      setTimeout(() => resolve(mockResponse), 100);
+    // Mock getMovies to return a promise that never resolves (keeps loading state)
+    vi.mocked(moviesApi.getMovies).mockImplementation(() => {
+      return new Promise(() => {
+        // This promise never resolves, keeping the loading state
+      });
     });
-
-    vi.mocked(moviesApi.getMovies).mockReturnValue(delayedPromise);
 
     await act(async () => {
       renderWithProviders(<Search />);

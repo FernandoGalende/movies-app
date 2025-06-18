@@ -38,7 +38,7 @@ describe("useKeyboardNavigation", () => {
       document.dispatchEvent(leftEvent);
     });
 
-    expect(result.current.selectedIndex).toBe(0);
-    expect(mockRefs[0].focus).toHaveBeenCalled();
+    expect(result.current.selectedIndex).toBe(2);
+    expect(mockRefs[2].focus).toHaveBeenCalled();
   });
 });
