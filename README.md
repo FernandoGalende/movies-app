@@ -26,7 +26,7 @@ The application provides a seamless movie search experience with the following f
 
 - **User Experience**:
   - Loading states for better feedback
-  - Empty state handling with favorite movies
+  - Empty state handling with trending movies
   - Empty image errors
   - Global errors page
 

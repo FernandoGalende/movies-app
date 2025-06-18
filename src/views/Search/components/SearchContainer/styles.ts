@@ -9,11 +9,10 @@ export const styles = {
   header: css({
     padding: "{spacing.md}",
     backgroundColor: "background",
-    borderBottom: "{borderWidths.sm} solid",
-    borderColor: "border",
   }),
   main: css({
     flex: 1,
     padding: "{spacing.md}",
+    backgroundColor: "background",
   }),
 };

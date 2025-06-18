@@ -1,5 +1,6 @@
-import { styles } from "./styles";
 import type { ReactNode } from "react";
+import { Footer } from "@/components";
+import { styles } from "./styles";
 
 interface SearchContainerProps {
   header: ReactNode;
@@ -16,6 +17,7 @@ export function SearchContainer({ header, main }: SearchContainerProps) {
         aria-label="Movie search and results">
         {main}
       </main>
+      <Footer />
     </div>
   );
 }

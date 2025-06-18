@@ -13,6 +13,18 @@ export const textStyles = defineTextStyles({
       textTransform: "None",
     },
   },
+  heading2: {
+    description: "The heading 2 text style - used in h2 tags",
+    value: {
+      fontFamily: "Inter",
+      fontWeight: "700",
+      fontSize: "24px",
+      lineHeight: "28px",
+      letterSpacing: "0",
+      textDecoration: "None",
+      textTransform: "None",
+    },
+  },
   body: {
     description: "The body text style - used in p tags",
     value: {
@@ -94,9 +106,11 @@ export default defineConfig({
           primary: { value: "#2563eb" },
           primaryHover: { value: "#1d4ed8" },
           secondary: { value: "#6c757d" },
+          ghostHover: { value: "#dfdfdf" },
           error: { value: "#dc3545" },
           background: { value: "#f8f9fa" },
           backgroundError: { value: "#f8d7da" },
+          backgroundSecondary: { value: "#ebeeef" },
           text: { value: "#000000" },
           border: { value: "#dee2e6" },
           contrastText: { value: "#f2f2f2" },

@@ -39,13 +39,11 @@ export const styles = {
     aspectRatio: "2/3",
     overflow: "hidden",
   }),
-
   poster: css({
     width: "100%",
     height: "100%",
     objectFit: "cover",
   }),
-
   rating: css({
     position: "absolute",
     top: "{spacing.sm}",
@@ -58,9 +56,8 @@ export const styles = {
     justifyContent: "center",
     gap: "{spacing.xs}",
   }),
-
-  star: css({
-    color: "#FFD700", // only
+  start: css({
+    color: "#FFD700", // only here
     textStyle: "supporting",
   }),
 

@@ -23,7 +23,7 @@ export const styles = {
   }),
   favMovies: css({
     display: "grid",
-    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 15.625rem), 1fr))", // auto-fit to fit automatically
+    gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 15.625rem), 1fr))",
     maxWidth: "calc(15.625rem * 4 + 1.5rem * 3)",
     gap: "{spacing.lg}",
     margin: "0 auto",
@@ -31,5 +31,13 @@ export const styles = {
     justifyItems: "center",
     alignItems: "center",
     width: "100%",
+  }),
+  title: css({
+    textStyle: "heading2",
+    color: "secondary",
+    margin: "0",
+    textAlign: "left",
+    width: "100%",
+    marginBottom: "{spacing.lg}",
   }),
 };

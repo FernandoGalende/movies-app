@@ -56,7 +56,9 @@ function Rating({ rating }: { rating: number }) {
     <div
       className={styles.rating}
       aria-label={`Rating: ${formattedRating} out of 10 stars`}>
-      <span aria-hidden="true">★</span>
+      <span aria-hidden="true" className={styles.start}>
+        ★
+      </span>
       <span className={styles.ratingValue} aria-hidden="true">
         {formattedRating}
       </span>

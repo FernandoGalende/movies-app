@@ -33,11 +33,9 @@ export const buttonStyles = {
       borderColor: "primary",
       border: "none",
       backgroundColor: "transparent",
-      color: "primary",
+      color: "text",
       _hover: {
-        color: "contrastText",
-        backgroundColor: "primaryHover",
-        borderColor: "primaryHover",
+        backgroundColor: "ghostHover",
       },
     }),
     error: css({

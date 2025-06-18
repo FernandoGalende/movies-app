@@ -43,12 +43,14 @@ export function SearchResults({
 
   return (
     <section data-testid="search-results" className={styles.results}>
-      <ResultsHeader
-        count={count}
-        query={query}
-        page={page}
-        totalPages={totalPages}
-      />
+      {movies.length > 0 && (
+        <ResultsHeader
+          count={count}
+          query={query}
+          page={page}
+          totalPages={totalPages}
+        />
+      )}
       <List movies={movies} />
       {children}
     </section>

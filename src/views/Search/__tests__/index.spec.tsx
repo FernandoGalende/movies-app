@@ -53,11 +53,15 @@ describe("Search page", () => {
       renderWithProviders(<Search />);
     });
 
-    expect(screen.getByText(/Movie Search/i)).toBeVisible();
+    expect(
+      screen.getByRole("heading", {
+        name: /movie search/i,
+      })
+    ).toBeVisible();
     expect(
       screen.getByPlaceholderText(/Type to search movies.../i)
     ).toBeVisible();
-    expect(screen.getByText(/Favorite movies/i)).toBeVisible();
+    expect(screen.getByText(/Trending Now/i)).toBeVisible();
   });
 
   test("should call API when typing in search input", async () => {
@@ -109,7 +113,7 @@ describe("Search page", () => {
       renderWithProviders(<Search />);
     });
 
-    expect(screen.getByText(/Favorite movies/i)).toBeVisible();
+    expect(screen.getByText(/Trending Now/i)).toBeVisible();
   });
 
   test("should show search results with count and pagination info", async () => {
