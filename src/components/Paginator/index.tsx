@@ -46,7 +46,7 @@ export function Paginator({
         key={page}
         onClick={() => onChange(page)}
         disabled={page === current}
-        size="sm"
+        size="md"
         aria-label={
           page === current ? `Current page ${page}` : `Go to page ${page}`
         }
@@ -65,7 +65,7 @@ export function Paginator({
         <Button
           onClick={handlePrevious}
           disabled={current === 1}
-          size="sm"
+          size="md"
           aria-label={`Go to previous page, current page is ${current}`}>
           <span aria-hidden="true">‹‹&nbsp;</span>
           <span>Prev</span>
@@ -81,7 +81,7 @@ export function Paginator({
         <Button
           onClick={handleNext}
           disabled={current === total}
-          size="sm"
+          size="md"
           aria-label={`Go to next page, current page is ${current}`}>
           <span>Next&nbsp;</span>
           <span aria-hidden="true">››</span>

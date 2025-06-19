@@ -30,5 +30,6 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "styled-system", "cypress"]
+  "include": ["src", "cypress"],
+  "exclude": ["styled-system", "node_modules"]
 }

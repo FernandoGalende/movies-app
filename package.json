@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "lint": "eslint . --ignore-pattern 'styled-system/**'",
     "preview": "vite preview",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --build --noEmit",
     "prepare": "panda codegen",
     "test": "vitest",
     "cypress:open": "cypress open",
